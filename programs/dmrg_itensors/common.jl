@@ -1,6 +1,7 @@
 import Pkg
 
 Pkg.activate(".")
+Pkg.instantiate()
 
 using HDF5
 using ITensors

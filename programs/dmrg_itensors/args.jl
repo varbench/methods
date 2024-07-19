@@ -54,7 +54,7 @@ function get_args(ham)
         "--max_step"
         help = "number of DMRG steps"
         arg_type = Int
-        default = 100
+        default = 50
         "--seed"
         help = "random seed, 0 for randomized"
         arg_type = Int
