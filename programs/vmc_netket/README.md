@@ -14,31 +14,6 @@ TODO: ED with symmetries implemented using [lattice-symmetries](https://github.c
 
 For the following larger lattices
 ```
-Hubbard/square_16_P_4_10
-Hubbard/square_16_P_4_2
-Hubbard/square_16_P_4_3.5981
-Hubbard/square_16_P_4_4
-Hubbard/square_16_P_4_6
-Hubbard/square_16_P_4_7.74264
-Hubbard/square_16_P_4_8
-Hubbard/square_16_P_5_10
-Hubbard/square_16_P_5_2.1544
-Hubbard/square_16_P_5_2
-Hubbard/square_16_P_5_3.5981
-Hubbard/square_16_P_5_4
-Hubbard/square_16_P_5_6
-Hubbard/square_16_P_5_7.74264
-Hubbard/square_16_P_5_8
-J1J2/rectangular-4x6_24_P_0.5
-J1J2/square_36_P_0.3
-J1J2/square_36_P_0.4
-J1J2/square_36_P_0.5
-J1J2/square_36_P_0.6
-J1J2/square_36_P_0.7
-J1J2/square_36_P_0.8
-J1J2/square_36_P_0.9
-J1J2/square_36_P_1
-TFIsing/square_36_P_3
 tV/chain_32_P_16_1
 tV/chain_32_P_16_2
 tV/chain_32_P_16_4

@@ -4,6 +4,7 @@ from typing import Iterable
 import lattice_symmetries as ls
 import netket as nk
 import numpy as np
+import scipy
 from netket.experimental.operator._fermion_operator_2nd_base import (
     FermionOperator2ndBase,
 )
@@ -36,14 +37,20 @@ def kron_prod(xs: Iterable[np.ndarray]):
     return out
 
 
+# TODO: Maybe use nk.LocalOperator.to_pauli_strings
 def matrix_to_paulis(
-    matrix: np.ndarray, *, cutoff: float = 1e-10
+    matrix: np.typing.ArrayLike | scipy.sparse.sparray | scipy.sparse.spmatrix,
+    *,
+    cutoff: float = 1e-10,
 ) -> tuple[list[str], list[float | complex]]:
     I = np.array([[1, 0], [0, 1]], dtype=np.float64)
     X = np.array([[0, 1], [1, 0]], dtype=np.float64)
     Y = np.array([[0, -1j], [1j, 0]], dtype=np.complex128)
     Z = np.array([[1, 0], [0, -1]], dtype=np.float64)
 
+    if scipy.sparse.issparse(matrix):
+        matrix = matrix.todense()
+    matrix = np.asarray(matrix)
     assert matrix.ndim == 2
     assert matrix.shape[0] == matrix.shape[1]
     # Number of Pauli operators
@@ -100,13 +107,18 @@ def local_to_ls(H: LocalOperatorBase, symmetries: ls.Symmetries) -> ls.Operator:
     assert isinstance(hilbert, nk.hilbert.Spin)
     if hilbert._total_sz is None:
         hamming_weight = None
+        spin_inversion = None
     else:
         hamming_weight = hilbert.size // 2 + hilbert._total_sz * 2
+        if hilbert._total_sz == 0:
+            spin_inversion = 1
+        else:
+            spin_inversion = None
     # TODO: Symmetries
     basis = ls.SpinBasis(
         hilbert.size,
         hamming_weight=hamming_weight,
-        spin_inversion=1,
+        spin_inversion=spin_inversion,
         symmetries=symmetries,
     )
     basis.build()
@@ -147,6 +159,7 @@ def fermion_term_to_expr(term: list[tuple[int, int]], spinful: bool, N: int) -> 
     return expr
 
 
+# TODO: Support symmetries for fermions
 def fermion_to_ls(H: FermionOperator2ndBase, symmetries: ls.Symmetries) -> ls.Operator:
     assert symmetries is None
 
