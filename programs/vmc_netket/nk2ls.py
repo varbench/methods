@@ -1,4 +1,7 @@
+# Convert NetKet Hamiltonian to lattice-symmetries
+
 import itertools
+import warnings
 from typing import Iterable
 
 import lattice_symmetries as ls
@@ -25,6 +28,10 @@ def to_ls(H: AbstractOperator, symmetries: ls.Symmetries) -> ls.Operator:
     if isinstance(H, LocalOperatorBase):
         return local_to_ls(H, symmetries)
     elif isinstance(H, FermionOperator2ndBase):
+        warnings.warn(
+            "As lattice-symmetries does not support symmetries for fermions yet, "
+            "we recommend to use QuSpin for fermions"
+        )
         return fermion_to_ls(H, symmetries)
     else:
         raise TypeError(f"Unsupported operator {type(H)}: {H}")
@@ -102,6 +109,7 @@ def pauli_to_expr(pauli: str, acting_on: tuple[int, ...]) -> str:
     return expr
 
 
+# Assume symmetry sector spin_inversion = 1 if total_sz = 0
 def local_to_ls(H: LocalOperatorBase, symmetries: ls.Symmetries) -> ls.Operator:
     hilbert = H.hilbert
     assert isinstance(hilbert, nk.hilbert.Spin)
@@ -114,7 +122,6 @@ def local_to_ls(H: LocalOperatorBase, symmetries: ls.Symmetries) -> ls.Operator:
             spin_inversion = 1
         else:
             spin_inversion = None
-    # TODO: Symmetries
     basis = ls.SpinBasis(
         hilbert.size,
         hamming_weight=hamming_weight,
@@ -159,7 +166,6 @@ def fermion_term_to_expr(term: list[tuple[int, int]], spinful: bool, N: int) -> 
     return expr
 
 
-# TODO: Support symmetries for fermions
 def fermion_to_ls(H: FermionOperator2ndBase, symmetries: ls.Symmetries) -> ls.Operator:
     assert symmetries is None
 
@@ -186,6 +192,7 @@ def fermion_to_ls(H: FermionOperator2ndBase, symmetries: ls.Symmetries) -> ls.Op
     return H
 
 
+# Assume symmetry sectors 0
 def get_symmetries(ham: str, extents: tuple[int, ...], pbc: bool) -> ls.Symmetries:
     ham_dim = len(extents)
     assert len(extents) == ham_dim
