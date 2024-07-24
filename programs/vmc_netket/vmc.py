@@ -21,11 +21,7 @@ from utils import init_out_dir, tree_size_real_nonzero
 
 def get_ham():
     L = args.L
-    if args.L2 == 0:
-        L2 = L
-    else:
-        assert args.ham_dim == 2
-        L2 = args.L2
+    L2 = args.L2
 
     if args.boundary == "peri":
         pbc = True

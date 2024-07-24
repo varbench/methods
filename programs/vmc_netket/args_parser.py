@@ -242,6 +242,12 @@ def get_ham_net_name(args):
 
 
 def post_init_args(args):
+    if args.ham_dim == 1:
+        assert args.L2 == 0
+    else:
+        if args.L2 == 0:
+            args.L2 = args.L
+
     if args.seed == 0:
         # The seed depends on the time and the PID
         args.seed = hash((datetime.now(), os.getpid())) & (2**32 - 1)

@@ -17,14 +17,14 @@ def subscript_number(n: int) -> str:
     return "".join([chr(ord(c) + 8272) for c in str(n)])
 
 
-def to_ls(H: AbstractOperator) -> ls.Operator:
+def to_ls(H: AbstractOperator, symmetries: ls.Symmetries) -> ls.Operator:
     if isinstance(H, SpecialHamiltonian):
         H = H.to_local_operator()
 
     if isinstance(H, LocalOperatorBase):
-        return local_to_ls(H)
+        return local_to_ls(H, symmetries)
     elif isinstance(H, FermionOperator2ndBase):
-        return fermion_to_ls(H)
+        return fermion_to_ls(H, symmetries)
     else:
         raise TypeError(f"Unsupported operator {type(H)}: {H}")
 
@@ -95,7 +95,7 @@ def pauli_to_expr(pauli: str, acting_on: tuple[int, ...]) -> str:
     return expr
 
 
-def local_to_ls(H: LocalOperatorBase) -> ls.Operator:
+def local_to_ls(H: LocalOperatorBase, symmetries: ls.Symmetries) -> ls.Operator:
     hilbert = H.hilbert
     assert isinstance(hilbert, nk.hilbert.Spin)
     if hilbert._total_sz is None:
@@ -103,7 +103,12 @@ def local_to_ls(H: LocalOperatorBase) -> ls.Operator:
     else:
         hamming_weight = hilbert.size // 2 + hilbert._total_sz * 2
     # TODO: Symmetries
-    basis = ls.SpinBasis(hilbert.size, hamming_weight=hamming_weight, spin_inversion=1)
+    basis = ls.SpinBasis(
+        hilbert.size,
+        hamming_weight=hamming_weight,
+        spin_inversion=1,
+        symmetries=symmetries,
+    )
     basis.build()
 
     exprs = None
@@ -111,20 +116,11 @@ def local_to_ls(H: LocalOperatorBase) -> ls.Operator:
         paulis, weights = matrix_to_paulis(matrix)
         for pauli, weight in zip(paulis, weights):
             expr = pauli_to_expr(pauli, acting_on)
-            # print(weight, expr)
             if exprs is None:
                 exprs = weight * ls.Expr(expr)
             else:
                 exprs += weight * ls.Expr(expr)
     H = ls.Operator(basis, exprs)
-
-    # for i in range(2**hilbert.size):
-    #     x = np.zeros(2**hilbert.size)
-    #     x[i] = 1
-    #     x = H @ x
-    #     x[abs(x) < 1e-7] = 0
-    #     print(x)
-
     return H
 
 
@@ -151,7 +147,9 @@ def fermion_term_to_expr(term: list[tuple[int, int]], spinful: bool, N: int) -> 
     return expr
 
 
-def fermion_to_ls(H: FermionOperator2ndBase) -> ls.Operator:
+def fermion_to_ls(H: FermionOperator2ndBase, symmetries: ls.Symmetries) -> ls.Operator:
+    assert symmetries is None
+
     hilbert = H.hilbert
     if hilbert.n_spin_subsectors == 1:
         basis = ls.SpinlessFermionBasis(hilbert.n_orbitals, hilbert.n_fermions)
@@ -167,10 +165,56 @@ def fermion_to_ls(H: FermionOperator2ndBase) -> ls.Operator:
     exprs = None
     for term, weight in zip(H.terms, H.weights):
         expr = fermion_term_to_expr(term, spinful, hilbert.n_orbitals)
-        # print(weight, expr)
         if exprs is None:
             exprs = weight * ls.Expr(expr)
         else:
             exprs += weight * ls.Expr(expr)
     H = ls.Operator(basis, exprs)
     return H
+
+
+def get_symmetries(ham: str, extents: tuple[int, ...], pbc: bool) -> ls.Symmetries:
+    ham_dim = len(extents)
+    assert len(extents) == ham_dim
+
+    symmetries = []
+    if ham_dim == 1:
+        N = extents[0]
+        if ham in ["ising", "heis"]:
+            if pbc:
+                symmetries.append(ls.Symmetry([(i + 1) % N for i in range(N)], 0))
+            symmetries.append(ls.Symmetry([N - i - 1 for i in range(N)], 0))
+            symmetries = ls.Symmetries(symmetries)
+            return symmetries
+        else:
+            return None
+    elif ham_dim == 2:
+        L1, L2 = extents
+        N = L1 * L2
+
+        def k(i, j):
+            return (i % L1) * L2 + (j % L2)
+
+        def ijrange():
+            for k in range(N):
+                yield divmod(k, L2)
+
+        if ham in ["ising", "heis", "heis_tri", "j1j2"]:
+            if pbc:
+                symmetries.append(ls.Symmetry([k(i + 1, j) for i, j in ijrange()], 0))
+                symmetries.append(ls.Symmetry([k(i, j + 1) for i, j in ijrange()], 0))
+            if ham != "heis_tri":
+                symmetries.append(
+                    ls.Symmetry([k(L1 - i - 1, j) for i, j in ijrange()], 0)
+                )
+                symmetries.append(
+                    ls.Symmetry([k(i, L2 - j - 1) for i, j in ijrange()], 0)
+                )
+            if L1 == L2:
+                symmetries.append(ls.Symmetry([k(j, i) for i, j in ijrange()], 0))
+            symmetries = ls.Symmetries(symmetries)
+            return symmetries
+        else:
+            return None
+    else:
+        return None

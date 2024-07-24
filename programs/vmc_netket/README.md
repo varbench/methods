@@ -14,9 +14,6 @@ TODO: ED with symmetries implemented using [lattice-symmetries](https://github.c
 
 For the following larger lattices
 ```
-Heisenberg/square_36_O
-Heisenberg/square_36_P
-Heisenberg/triangular_36_P
 Hubbard/square_16_P_4_10
 Hubbard/square_16_P_4_2
 Hubbard/square_16_P_4_3.5981
