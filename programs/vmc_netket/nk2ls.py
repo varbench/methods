@@ -1,7 +1,7 @@
 # Convert NetKet Hamiltonian to lattice-symmetries
 
 import itertools
-import warnings
+import json
 from typing import Iterable
 
 import lattice_symmetries as ls
@@ -28,10 +28,6 @@ def to_ls(H: AbstractOperator, symmetries: ls.Symmetries) -> ls.Operator:
     if isinstance(H, LocalOperatorBase):
         return local_to_ls(H, symmetries)
     elif isinstance(H, FermionOperator2ndBase):
-        warnings.warn(
-            "As lattice-symmetries does not support symmetries for fermions yet, "
-            "we recommend to use QuSpin for fermions"
-        )
         return fermion_to_ls(H, symmetries)
     else:
         raise TypeError(f"Unsupported operator {type(H)}: {H}")
@@ -167,17 +163,40 @@ def fermion_term_to_expr(term: list[tuple[int, int]], spinful: bool, N: int) -> 
 
 
 def fermion_to_ls(H: FermionOperator2ndBase, symmetries: ls.Symmetries) -> ls.Operator:
-    assert symmetries is None
+    if symmetries is None:
+        symmetries = []
+    else:
+        symmetries = symmetries.json_object()
 
     hilbert = H.hilbert
     if hilbert.n_spin_subsectors == 1:
-        basis = ls.SpinlessFermionBasis(hilbert.n_orbitals, hilbert.n_fermions)
+        # TODO: Use ls.SpinfulFermionBasis and SpinlessFermionBasis when they
+        # officially support symmetries
+        basis = ls.Basis(
+            json.dumps(
+                {
+                    "particle": "spinless-fermion",
+                    "number_sites": hilbert.n_orbitals,
+                    "number_particles": hilbert.n_fermions,
+                    "symmetries": symmetries,
+                }
+            )
+        )
         spinful = False
     else:
         assert hilbert.n_spin_subsectors == 2
         assert hilbert.n_fermions_per_spin[1] == hilbert.n_fermions_per_spin[0]
         # TODO: Set number_particles = tuple[int, int] is documented but fails
-        basis = ls.SpinfulFermionBasis(hilbert.n_orbitals, hilbert.n_fermions)
+        basis = ls.Basis(
+            json.dumps(
+                {
+                    "particle": "spinful-fermion",
+                    "number_sites": hilbert.n_orbitals,
+                    "number_particles": hilbert.n_fermions,
+                    "symmetries": symmetries,
+                }
+            )
+        )
         spinful = True
     basis.build()
 
@@ -200,15 +219,19 @@ def get_symmetries(ham: str, extents: tuple[int, ...], pbc: bool) -> ls.Symmetri
     symmetries = []
     if ham_dim == 1:
         N = extents[0]
-        if ham in ["ising", "heis"]:
-            if pbc:
-                symmetries.append(ls.Symmetry([(i + 1) % N for i in range(N)], 0))
-            symmetries.append(ls.Symmetry([N - i - 1 for i in range(N)], 0))
-            symmetries = ls.Symmetries(symmetries)
-            return symmetries
-        else:
-            return None
+
+        if pbc:
+            symmetries.append(ls.Symmetry([(i + 1) % N for i in range(N)], 0))
+
+        symmetries.append(ls.Symmetry([N - i - 1 for i in range(N)], 0))
+
+        symmetries = ls.Symmetries(symmetries)
+        return symmetries
+
     elif ham_dim == 2:
+        if ham == "heis_kag":
+            return None
+
         L1, L2 = extents
         N = L1 * L2
 
@@ -219,22 +242,19 @@ def get_symmetries(ham: str, extents: tuple[int, ...], pbc: bool) -> ls.Symmetri
             for k in range(N):
                 yield divmod(k, L2)
 
-        if ham in ["ising", "heis", "heis_tri", "j1j2"]:
-            if pbc:
-                symmetries.append(ls.Symmetry([k(i + 1, j) for i, j in ijrange()], 0))
-                symmetries.append(ls.Symmetry([k(i, j + 1) for i, j in ijrange()], 0))
-            if ham != "heis_tri":
-                symmetries.append(
-                    ls.Symmetry([k(L1 - i - 1, j) for i, j in ijrange()], 0)
-                )
-                symmetries.append(
-                    ls.Symmetry([k(i, L2 - j - 1) for i, j in ijrange()], 0)
-                )
-            if L1 == L2:
-                symmetries.append(ls.Symmetry([k(j, i) for i, j in ijrange()], 0))
-            symmetries = ls.Symmetries(symmetries)
-            return symmetries
-        else:
-            return None
+        if pbc:
+            symmetries.append(ls.Symmetry([k(i + 1, j) for i, j in ijrange()], 0))
+            symmetries.append(ls.Symmetry([k(i, j + 1) for i, j in ijrange()], 0))
+
+        if ham != "heis_tri":
+            symmetries.append(ls.Symmetry([k(L1 - i - 1, j) for i, j in ijrange()], 0))
+            symmetries.append(ls.Symmetry([k(i, L2 - j - 1) for i, j in ijrange()], 0))
+
+        if L1 == L2:
+            symmetries.append(ls.Symmetry([k(j, i) for i, j in ijrange()], 0))
+
+        symmetries = ls.Symmetries(symmetries)
+        return symmetries
+
     else:
         return None
