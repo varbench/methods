@@ -1,1 +1,9 @@
+Codes for variational Monte Carlo (VMC) calculations for spin models (Heisenberg, J1-J2 model).
+The variational wave functions are Gutzwiller-projected fermionic states, supplemented by a long-range spin-spin Jastrow factor.
+Bash scripts to reproduce results in the dataset are collected in the "scripts" folder, together with the input files containing the optimal variational parameters.
+
+Run compile.sh to compile codes. This requires Fortran and C compilers (assuming GNU compilers here) + LAPACK and BLAS libraries.
+Compilation tested with the following compilers on a Linux machine:
+-) GNU Fortran (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+-) gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
 
