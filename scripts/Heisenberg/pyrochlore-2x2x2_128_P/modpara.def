@@ -1,0 +1,34 @@
+--------------------
+Model_Parameters   0
+--------------------
+VMC_Cal_Parameters  
+--------------------
+CDataFileHead   AP_even_RNDM
+CParaFileHead   AP_even_RNDM
+--------------------
+NVMCCalMode    0
+NLanczosmode   0
+--------------------
+NDataIdxStart  1
+NDataQtySmp    1
+--------------------
+Nsite          128
+Ncond          0
+2Sz            0
+NSPGaussLeg    2
+NSPStot        0
+NMPTrans       1
+NSROptItrStep  2000
+NSROptItrSmp   200
+DSROptRedCut   0.001
+DSROptStaDel   0.02
+DSROptStepDt   0.02
+NVMCWarmUp     100
+NVMCInterval   1
+NVMCSample     100
+NExUpdatePath  2
+RndSeed        123456789
+NSplitSize     1
+NStore         1
+NSRCG          1
+NneuronSpin    128
