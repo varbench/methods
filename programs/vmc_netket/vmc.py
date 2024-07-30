@@ -196,7 +196,7 @@ def get_optimizer():
         optimizer = optax.contrib.split_real_and_imaginary(optimizer)
 
     if args.optimizer == "sr":
-        solver = partial(jax.scipy.sparse.linalg.cg, tol=1e-7, atol=1e-7, maxiter=20)
+        solver = nk.optimizer.solver.solve
         diag_shift = optax.linear_schedule(
             args.diag_shift, 0.1 * args.diag_shift, args.max_step
         )
@@ -210,15 +210,31 @@ def get_optimizer():
 
 
 def get_vmc(H, vstate, optimizer, preconditioner):
-    vmc = nk.VMC(
-        H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner
-    )
+    if (
+        preconditioner == identity_preconditioner
+        or vstate.n_parameters < vstate.n_samples
+    ):
+        vmc = nk.VMC(
+            H,
+            variational_state=vstate,
+            optimizer=optimizer,
+            preconditioner=preconditioner,
+        )
+    else:
+        vmc = nkx.driver.VMC_SRt(
+            H,
+            variational_state=vstate,
+            optimizer=optimizer,
+            diag_shift=preconditioner.diag_shift,
+        )
+
     logger = nk.logging.JsonLog(
         args.log_filename,
         "w",
         save_params_every=max(args.max_step // 100, 1),
         write_every=max(args.max_step // 100, 1),
     )
+
     return vmc, logger
 
 
