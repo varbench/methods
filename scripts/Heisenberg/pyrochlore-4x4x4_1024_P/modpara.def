@@ -16,7 +16,7 @@ Nsite          1024
 Ncond          0
 2Sz            0
 NSPGaussLeg    2
-NSPStot        0
+NSPar          0
 NMPTrans       3
 NSROptItrStep  2000
 NSROptItrSmp   200
