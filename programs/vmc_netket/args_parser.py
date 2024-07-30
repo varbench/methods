@@ -90,7 +90,7 @@ def get_parser():
         "--net",
         type=str,
         default="jas",
-        choices=["jas", "rbm", "rnn_lstm"],
+        choices=["jas", "rbm", "gcnn", "rnn_lstm"],
         help="network type",
     )
     group.add_argument(

@@ -137,6 +137,13 @@ def get_net(graph, hilbert):
             hidden_bias_init=zeros,
             visible_bias_init=zeros,
         )
+    elif args.net == "gcnn":
+        return nk.models.GCNN(
+            symmetries=graph,
+            layers=args.layers,
+            features=args.features,
+            param_dtype=args.dtype,
+        )
     elif args.net == "rnn_lstm":
         return nkx.models.LSTMNet(
             hilbert=hilbert,
