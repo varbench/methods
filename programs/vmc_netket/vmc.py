@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 import time
-from functools import partial
 
-import jax
 import netket as nk
 import optax
 from jax import numpy as jnp
@@ -119,10 +117,13 @@ def get_ham():
 def get_net(graph, hilbert):
     N = hilbert.size
     if args.net == "jas":
+        assert args.layers == 1
+        assert args.features == 1
         return nk.models.Jastrow(
             param_dtype=args.dtype, kernel_init=truncated_normal(stddev=1 / N)
         )
     elif args.net == "rbm":
+        assert args.layers == 1
         alpha = args.features
         if jnp.issubdtype(args.dtype, jnp.floating):
             kernel_init = truncated_normal(stddev=1 / (alpha**0.5 * N))
