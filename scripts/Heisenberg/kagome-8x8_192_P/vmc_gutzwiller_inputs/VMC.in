@@ -9,9 +9,6 @@ nscra=190
 epst=1.d-10 
 /
 &fixednode
-etry=0.d0
-tbra=0.2d0
-gamma=0.d0
 /
 &vmc
 nbra=200    
