@@ -70,6 +70,7 @@ def get_ham():
             hilbert = nk.hilbert.Spin(s=1 / 2, N=graph.n_nodes)
 
     J = 1
+    sign = args.sign == "mars"
 
     if args.ham == "ising":
         assert args.sign == "none"
@@ -84,24 +85,18 @@ def get_ham():
         assert not args.h
         if args.ham.endswith("tri"):
             H = nk.operator.Heisenberg(
-                hilbert=hilbert,
-                graph=graph,
-                J=[J, J],
-                sign_rule=[(args.sign == "mars"), False],
+                hilbert=hilbert, graph=graph, J=[J, J], sign_rule=[sign, False]
             )
         else:
             H = nk.operator.Heisenberg(
-                hilbert=hilbert, graph=graph, J=J, sign_rule=(args.sign == "mars")
+                hilbert=hilbert, graph=graph, J=J, sign_rule=sign
             )
     elif args.ham == "j1j2":
         assert not args.U
         assert not args.V
         assert not args.h
         H = nk.operator.Heisenberg(
-            hilbert=hilbert,
-            graph=graph,
-            J=[J, args.J2],
-            sign_rule=[(args.sign == "mars"), False],
+            hilbert=hilbert, graph=graph, J=[J, args.J2], sign_rule=[sign, False]
         )
     elif args.ham == "hubb":
         assert args.sign == "none"
@@ -202,8 +197,11 @@ def get_optimizer():
 
     if args.optimizer == "sr":
         solver = partial(jax.scipy.sparse.linalg.cg, tol=1e-7, atol=1e-7, maxiter=20)
+        diag_shift = optax.linear_schedule(
+            args.diag_shift, 0.1 * args.diag_shift, args.max_step
+        )
         preconditioner = nk.optimizer.SR(
-            qgt=QGTOnTheFly(), solver=solver, diag_shift=args.diag_shift
+            qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift
         )
     else:
         preconditioner = identity_preconditioner
@@ -246,10 +244,6 @@ def main():
     vstate.n_samples = args.estim_size
     energy = vstate.expect(H)
     print("energy", energy)
-
-    H_sqr = vstate.expect(H @ H)
-    energy_var = H_sqr - energy**2
-    print("energy_var", energy_var)
 
 
 if __name__ == "__main__":

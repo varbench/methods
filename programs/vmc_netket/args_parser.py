@@ -165,13 +165,13 @@ def get_parser():
     group.add_argument(
         "--chunk_size",
         type=int,
-        default=0,
+        default=1024,
         help="chunk size, 0 for disabled",
     )
     group.add_argument(
         "--estim_size",
         type=int,
-        default=0,
+        default=1024**2,
         help="batch size to estimate the Hamiltonian, 0 for matching `batch_size`",
     )
 
