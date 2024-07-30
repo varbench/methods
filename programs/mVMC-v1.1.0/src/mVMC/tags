@@ -1,0 +1,422 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BackFlowDiff_fcmp	slater.c	/^void BackFlowDiff_fcmp(complex double *srOptO, const double complex ip, int *eleIdx, const int *eleNum, int *eleProjConst,$/;"	f
+CIMAG	stcopt_cg_impl.c	31;"	d	file:
+CIMAG	stcopt_cg_impl.c	44;"	d	file:
+CIMAG	stcopt_cg_impl.c	537;"	d	file:
+CREAL	stcopt_cg_impl.c	30;"	d	file:
+CREAL	stcopt_cg_impl.c	43;"	d	file:
+CREAL	stcopt_cg_impl.c	536;"	d	file:
+CalcAveVar	avevar.c	/^void CalcAveVar(int i, int n, double complex* _ave, double* _var){$/;"	f
+CalculateDoubleOccupation	calham.c	/^double CalculateDoubleOccupation(int *eleIdx, const int *eleCfg,$/;"	f
+CalculateEne	physcal_lanczos.c	/^int CalculateEne(double H1, double H2_1, double H2_2, double H3, double H4,$/;"	f
+CalculateEneByAlpha	physcal_lanczos.c	/^int CalculateEneByAlpha($/;"	f
+CalculateGreenFunc	calgrn.c	/^void CalculateGreenFunc(const double w, const double complex ip, int *eleIdx, int *eleCfg,$/;"	f
+CalculateGreenFuncBF	calgrn.c	/^void CalculateGreenFuncBF(const double w, const double ip, int *eleIdx, int *eleCfg,$/;"	f
+CalculateGreenFunc_fsz	calgrn_fsz.c	/^void CalculateGreenFunc_fsz(const double w, const double complex ip, int *eleIdx, int *eleCfg,$/;"	f
+CalculateHamiltonian	calham.c	/^double complex CalculateHamiltonian(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonian0	calham.c	/^double complex CalculateHamiltonian0(const int *eleNum) {$/;"	f
+CalculateHamiltonian0_fsz	calham_fsz.c	/^double complex CalculateHamiltonian0_fsz(const int *eleNum) {$/;"	f
+CalculateHamiltonian0_real	calham_real.c	/^double CalculateHamiltonian0_real(const int *eleNum)$/;"	f
+CalculateHamiltonian1	calham.c	/^double complex CalculateHamiltonian1(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonian1_fsz	calham_fsz.c	/^double complex CalculateHamiltonian1_fsz(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonian2	calham.c	/^double complex CalculateHamiltonian2(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonian2_fsz	calham_fsz.c	/^double complex CalculateHamiltonian2_fsz(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonianBF_fcmp	calham.c	/^double complex CalculateHamiltonianBF_fcmp(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonianBF_real	calham_real.c	/^double CalculateHamiltonianBF_real(const double ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonian_fsz	calham_fsz.c	/^double complex CalculateHamiltonian_fsz(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonian_fsz_real	calham_fsz_real.c	/^double CalculateHamiltonian_fsz_real(const double ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateHamiltonian_real	calham_real.c	/^double CalculateHamiltonian_real(const double ip, int *eleIdx, const int *eleCfg,$/;"	f
+CalculateIP_fcmp	qp.c	/^double complex CalculateIP_fcmp(double complex * const pfM, const int qpStart, const int qpEnd, MPI_Comm comm) {$/;"	f
+CalculateIP_real	qp_real.c	/^double  CalculateIP_real(double* const pfM, const int qpStart, const int qpEnd, MPI_Comm comm) {$/;"	f
+CalculateLogIP_fcmp	qp.c	/^double complex CalculateLogIP_fcmp(double complex * const pfM, const int qpStart, const int qpEnd, MPI_Comm comm) {$/;"	f
+CalculateLogIP_real	qp_real.c	/^double CalculateLogIP_real(double* const pfM, const int qpStart, const int qpEnd, MPI_Comm comm) {$/;"	f
+CalculateMAll_BF_fcmp	matrix.c	/^int CalculateMAll_BF_fcmp(const int *eleIdx, const int qpStart, const int qpEnd) {$/;"	f
+CalculateMAll_BF_real	matrix.c	/^int CalculateMAll_BF_real(const int *eleIdx, const int qpStart, const int qpEnd){$/;"	f
+CalculateMAll_fcmp	matrix.c	/^int CalculateMAll_fcmp(const int *eleIdx, const int qpStart, const int qpEnd) {$/;"	f
+CalculateMAll_fsz	matrix.c	/^int CalculateMAll_fsz(const int *eleIdx,const int *eleSpn, const int qpStart, const int qpEnd) {$/;"	f
+CalculateMAll_fsz_real	matrix.c	/^int CalculateMAll_fsz_real(const int *eleIdx,const int *eleSpn, const int qpStart, const int qpEnd) {$/;"	f
+CalculateMAll_real	matrix.c	/^int CalculateMAll_real(const int *eleIdx, const int qpStart, const int qpEnd) {$/;"	f
+CalculateNewPfM	pfupdate.c	/^void CalculateNewPfM(const int ma, const int s, double complex *pfMNew, const int *eleIdx,$/;"	f
+CalculateNewPfM2	pfupdate.c	/^void CalculateNewPfM2(const int ma, const int s, double complex *pfMNew, const int *eleIdx,$/;"	f
+CalculateNewPfM2_fsz	pfupdate_fsz.c	/^void CalculateNewPfM2_fsz(const int ma, const int s, double complex *pfMNew, const int *eleIdx,const int *eleSpn,$/;"	f
+CalculateNewPfM2_fsz_real	pfupdate_fsz_real.c	/^void CalculateNewPfM2_fsz_real(const int ma, const int s, double *pfMNew, const int *eleIdx,const int *eleSpn,$/;"	f
+CalculateNewPfM2_real	pfupdate_real.c	/^void CalculateNewPfM2_real(const int ma, const int s, double *pfMNew_real, const int *eleIdx,$/;"	f
+CalculateNewPfMBF	pfupdate.c	/^void CalculateNewPfMBF(const int *icount, const int *msaTmp,$/;"	f
+CalculateNewPfMBF_real	pfupdate_real.c	/^void CalculateNewPfMBF_real(const int *icount, const int *msaTmp,$/;"	f
+CalculateNewPfMTwo2_fcmp	pfupdate_two_fcmp.c	/^void CalculateNewPfMTwo2_fcmp(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfMTwo2_fsz	pfupdate_two_fsz.c	/^void CalculateNewPfMTwo2_fsz(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfMTwo2_fsz_real	pfupdate_two_fsz_real.c	/^void CalculateNewPfMTwo2_fsz_real(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfMTwo2_real	pfupdate_two_real.c	/^void CalculateNewPfMTwo2_real(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfMTwo_fcmp	pfupdate_two_fcmp.c	/^void CalculateNewPfMTwo_fcmp(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfMTwo_fsz	pfupdate_two_fsz.c	/^void CalculateNewPfMTwo_fsz(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfMTwo_fsz_real	pfupdate_two_fsz_real.c	/^void CalculateNewPfMTwo_fsz_real(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfMTwo_real	pfupdate_two_real.c	/^void CalculateNewPfMTwo_real(const int ma, const int s, const int mb, const int t,$/;"	f
+CalculateNewPfM_fsz	pfupdate_fsz.c	/^void CalculateNewPfM_fsz(const int ma, const int s, double complex *pfMNew, const int *eleIdx,const int *eleSpn,$/;"	f
+CalculateNewPfM_fsz_real	pfupdate_fsz_real.c	/^void CalculateNewPfM_fsz_real(const int ma, const int s, double *pfMNew, const int *eleIdx,const int *eleSpn,$/;"	f
+CalculateNewPfM_real	pfupdate_real.c	/^void CalculateNewPfM_real(const int ma, const int s, double *pfMNew_real, const int *eleIdx,$/;"	f
+CalculatePhysVal_fcmp	physcal_lanczos.c	/^int CalculatePhysVal_fcmp($/;"	f
+CalculatePhysVal_real	physcal_lanczos.c	/^int CalculatePhysVal_real($/;"	f
+CalculateSz_fsz	calham_fsz.c	/^double CalculateSz_fsz(const double complex ip, int *eleIdx, const int *eleCfg,$/;"	f
+CheckEleConfig_fsz	vmcmake_fsz.c	/^void CheckEleConfig_fsz(int *eleIdx, int *eleCfg, int *eleNum,int *eleSpn,MPI_Comm comm){$/;"	f
+CheckEleNum_fsz	vmcmake_fsz.c	/^int CheckEleNum_fsz(int *eleIdx, int *eleCfg, int *eleNum,int *eleSpn,MPI_Comm comm){$/;"	f
+CheckKW	readdef.c	/^int CheckKW($/;"	f
+CheckPairSite	readdef.c	/^int CheckPairSite($/;"	f
+CheckQuadSite	readdef.c	/^int CheckQuadSite($/;"	f
+CheckSite	readdef.c	/^int CheckSite($/;"	f
+CheckWords	readdef.c	/^int CheckWords($/;"	f
+Child_OutputOptData	avevar.c	/^void Child_OutputOptData(FILE *fp_all, char* cFileName, char* cNKWidx, int Nidx_head, int Nidx, int count_i, int n){$/;"	f
+CloseFile	initfile.c	/^void CloseFile(int rank) {$/;"	f
+CloseFilePhysCal	initfile.c	/^void CloseFilePhysCal(int rank) {$/;"	f
+CountOneBodyGForLanczos	readdef.c	/^int CountOneBodyGForLanczos(char *xNameListFile, int Nca, int Ncacadc, int Ns, int **caIdx, int **iFlgOneBodyG) {$/;"	f
+D_AmpMax	parameter.c	32;"	d	file:
+D_MpiSendMax	safempi.c	29;"	d	file:
+D_MpiSendMax	safempi_fcmp.c	29;"	d	file:
+D_PfLimit	matrix.c	37;"	d	file:
+FlushFile	initfile.c	/^void FlushFile(int step, int rank) {$/;"	f
+FreeMemory	setmemory.c	/^void FreeMemory() {$/;"	f
+FreeMemoryDef	setmemory.c	/^void FreeMemoryDef() {$/;"	f
+FreeWorkSpaceAll	workspace.c	/^void FreeWorkSpaceAll() {$/;"	f
+GaussLeg	gauleg.c	/^void GaussLeg(const double x1, const double x2, double *x, double *w, const int n){$/;"	f
+GaussLeg_EPS	gauleg.c	30;"	d	file:
+GetFileName	readdef.c	/^int GetFileName($/;"	f
+GetInfoCoulombIntra	readdef.c	/^int GetInfoCoulombIntra(FILE *fp, int *ArrayIdx, double *ArrayValue, int Nsite, int NArray, char *defname) {$/;"	f
+GetInfoDH2	readdef.c	/^GetInfoDH2(FILE *fp, int **ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int _fidx, int Nsite, int NArray,$/;"	f
+GetInfoDH4	readdef.c	/^GetInfoDH4(FILE *fp, int **ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int _fidx, int Nsite, int NArray,$/;"	f
+GetInfoFromModPara	readdef.c	/^int GetInfoFromModPara(int *bufInt, double *bufDouble) {$/;"	f
+GetInfoGeneralRBM_Layer	readdef.c	/^int GetInfoGeneralRBM_Layer(FILE *fp, int *ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int _fidx, int Nlayer, int NArray,$/;"	f
+GetInfoGeneralRBM_PhysHidden	readdef.c	/^int GetInfoGeneralRBM_PhysHidden(FILE *fp, int **ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int _fidx, int Nlayer, int Nlayer2, int NArray,$/;"	f
+GetInfoGutzwiller	readdef.c	/^int GetInfoGutzwiller(FILE *fp, int *ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int Nsite, int NArray,$/;"	f
+GetInfoInterAll	readdef.c	/^int GetInfoInterAll(FILE *fp, int **ArrayIdx, double complex *ArrayValue,$/;"	f
+GetInfoJastrow	readdef.c	/^int GetInfoJastrow(FILE *fp, int **ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int _fidx, int Nsite,$/;"	f
+GetInfoOneBodyG	readdef.c	/^GetInfoOneBodyG(FILE *fp, int **ArrayIdx, int **ArrayToIdx, int _NLanczosMode, int Nsite, int NArray, char *defname) {$/;"	f
+GetInfoOpt	readdef.c	/^int GetInfoOpt(FILE *fp, int *ArrayOpt, int iComplxFlag, int *iTotalOptCount, int fidx) {$/;"	f
+GetInfoOptOrbitalParalell	readdef.c	/^int GetInfoOptOrbitalParalell(FILE *fp, int *ArrayOpt, int iComplxFlag, int *iTotalOptCount, int fidx) {$/;"	f
+GetInfoOptTrans	readdef.c	/^int GetInfoOptTrans(FILE *fp, int **Array, double *ArrayPara, int *ArrayOpt, int **ArraySgn,$/;"	f
+GetInfoOrbitalAntiParallel	readdef.c	/^int GetInfoOrbitalAntiParallel(FILE *fp, int **Array, int *ArrayOpt, int **ArraySgn, int *iOptCount,$/;"	f
+GetInfoOrbitalGeneral	readdef.c	/^int GetInfoOrbitalGeneral(FILE *fp, int **Array, int *ArrayOpt, int **ArraySgn, int *iOptCount,$/;"	f
+GetInfoOrbitalParallel	readdef.c	/^int GetInfoOrbitalParallel(FILE *fp, int **Array, int *ArrayOpt, int **ArraySgn, int *iOptCount,$/;"	f
+GetInfoRBM_Layer	readdef.c	/^int GetInfoRBM_Layer(FILE *fp, int *ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int _fidx, int Nlayer, int NArray,$/;"	f
+GetInfoRBM_PhysHidden	readdef.c	/^int GetInfoRBM_PhysHidden(FILE *fp, int **ArrayIdx, int *ArrayOpt, int iComplxFlag, int *iOptCount, int _fidx, int Nlayer, int Nlayer2, int NArray,$/;"	f
+GetInfoTransSym	readdef.c	/^int GetInfoTransSym(FILE *fp, int **Array, int **ArraySgn, int **ArrayInv, double complex *ArrayPara,$/;"	f
+GetInfoTwoBodyG	readdef.c	/^int GetInfoTwoBodyG(FILE *fp, int **ArrayIdx, int **ArrayIdxTwoBodyGLz, int **ArrayToIdx, int **ArrayIdxOneBodyG,$/;"	f
+GetInfoTwoBodyGEx	readdef.c	/^int GetInfoTwoBodyGEx(FILE *fp, int **ArrayIdx, int Nsite, int NArray, char *defname) {$/;"	f
+GetKWWithIdx	readdef.c	/^int GetKWWithIdx($/;"	f
+GetLocSpinInfo	readdef.c	/^int GetLocSpinInfo(FILE *fp, int *ArrayIdx, int Nsite, char *defname) {$/;"	f
+GetTransferInfo	readdef.c	/^int GetTransferInfo(FILE *fp, int **ArrayIdx, double complex *ArrayValue, int Nsite, int NArray, char *defname) {$/;"	f
+GetWorkSpaceComplex	workspace.c	/^double complex * GetWorkSpaceComplex(int n) {$/;"	f
+GetWorkSpaceDouble	workspace.c	/^double* GetWorkSpaceDouble(int n) {$/;"	f
+GetWorkSpaceInt	workspace.c	/^int* GetWorkSpaceInt(int n) {$/;"	f
+GetWorkSpaceThreadComplex	workspace.c	/^double complex* GetWorkSpaceThreadComplex(int n) {$/;"	f
+GetWorkSpaceThreadDouble	workspace.c	/^double* GetWorkSpaceThreadDouble(int n) {$/;"	f
+GetWorkSpaceThreadInt	workspace.c	/^int* GetWorkSpaceThreadInt(int n) {$/;"	f
+GreenFunc1	locgrn.c	/^double complex GreenFunc1(const int ri, const int rj, const int s, const double complex  ip,$/;"	f
+GreenFunc1BF	locgrn.c	/^double complex GreenFunc1BF(const int ri, const int rj, const int s, const double complex ip, double complex *bufM,$/;"	f
+GreenFunc1BF_real	locgrn_real.c	/^double GreenFunc1BF_real(const int ri, const int rj, const int s, const double ip, double *bufM,$/;"	f
+GreenFunc1_fsz	locgrn_fsz.c	/^double complex GreenFunc1_fsz(const int ri, const int rj, const int s, const double complex  ip,$/;"	f
+GreenFunc1_fsz2	locgrn_fsz.c	/^double complex GreenFunc1_fsz2(const int ri, const int rj, const int s,const int t, const double complex  ip,$/;"	f
+GreenFunc1_fsz2_real	locgrn_fsz_real.c	/^double GreenFunc1_fsz2_real(const int ri, const int rj, const int s,const int t, const double ip,$/;"	f
+GreenFunc1_fsz_real	locgrn_fsz_real.c	/^double GreenFunc1_fsz_real(const int ri, const int rj, const int s, const double ip,$/;"	f
+GreenFunc1_real	locgrn_real.c	/^double  GreenFunc1_real(const int ri, const int rj, const int s, const double ip,$/;"	f
+GreenFunc2	locgrn.c	/^double complex GreenFunc2(const int ri, const int rj, const int rk, const int rl,$/;"	f
+GreenFunc2_fsz	locgrn_fsz.c	/^double complex GreenFunc2_fsz(const int ri, const int rj, const int rk, const int rl,$/;"	f
+GreenFunc2_fsz2	locgrn_fsz.c	/^double complex GreenFunc2_fsz2(const int ri, const int rj, const int rk, const int rl,$/;"	f
+GreenFunc2_fsz2_real	locgrn_fsz_real.c	/^double GreenFunc2_fsz2_real(const int ri, const int rj, const int rk, const int rl,$/;"	f
+GreenFunc2_fsz_real	locgrn_fsz_real.c	/^double GreenFunc2_fsz_real(const int ri, const int rj, const int rk, const int rl,$/;"	f
+GreenFunc2_real	locgrn_real.c	/^double GreenFunc2_real(const int ri, const int rj, const int rk, const int rl,$/;"	f
+GreenFuncN	locgrn.c	/^double complex GreenFuncN(const int n, int *rsi, int *rsj, const double complex ip,$/;"	f
+GreenFuncN_real	locgrn_real.c	/^double GreenFuncN_real(const int n, int *rsi, int *rsj, const double  ip,$/;"	f
+InitFile	initfile.c	/^void InitFile(char *xNameListFile, int rank) {$/;"	f
+InitFilePhysCal	initfile.c	/^void InitFilePhysCal(int i, int rank) {$/;"	f
+InitParameter	parameter.c	/^void InitParameter() {$/;"	f
+InitQPWeight	qp.c	/^void InitQPWeight() {$/;"	f
+InitTimer	vmcclock.c	/^void InitTimer() {$/;"	f
+JudgeOrbitalMode	readdef.c	/^int JudgeOrbitalMode(int *_iFlgOrbitalGeneral, const int _iFlgOrbitalAP, const int _iFlgOrbitalP) {$/;"	f
+LSLocalCisAjs	lslocgrn.c	/^void LSLocalCisAjs(const double complex h1, const double complex ip, int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt) {$/;"	f
+LSLocalCisAjs_real	lslocgrn_real.c	/^void LSLocalCisAjs_real(const double h1, const double ip, int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt) {$/;"	f
+LSLocalQ	lslocgrn.c	/^void LSLocalQ(const double complex h1, const double complex ip, int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt, double complex *_LSLQ)$/;"	f
+LSLocalQ_real	lslocgrn_real.c	/^void LSLocalQ_real(const double h1, const double ip, int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt, double *_LSLQ_real)$/;"	f
+LegendrePoly	legendrepoly.c	/^double LegendrePoly(const double x, const int n){$/;"	f
+LogProjRatio	projection.c	/^inline double LogProjRatio(const int *projCntNew, const int *projCntOld) {$/;"	f
+LogProjVal	projection.c	/^inline double LogProjVal(const int *projCnt) {$/;"	f
+LogRBMRatio	rbm.c	/^inline double complex LogRBMRatio(const double complex *rbmCntNew, const double complex *rbmCntOld) {$/;"	f
+LogWeightRBM	rbm.c	/^inline double complex LogWeightRBM(const double complex *rbmCnt) {$/;"	f
+MVMC_SRCG_REAL	stcopt_cg.c	37;"	d	file:
+MVMC_SRCG_REAL	stcopt_cg.c	39;"	d	file:
+MakeProjBFCnt	projection.c	/^void MakeProjBFCnt(int *projCnt, const int *eleNum) {$/;"	f
+MakeProjCnt	projection.c	/^void MakeProjCnt(int *projCnt, const int *eleNum) {$/;"	f
+MakeRBMCnt	rbm.c	/^void MakeRBMCnt(double complex *rbmCnt, const int *eleNum) {$/;"	f
+MakeSlaterElmBF_fcmp	slater.c	/^void MakeSlaterElmBF_fcmp(const int *eleNum, const int *eleProjBFCnt) {$/;"	f
+OFFSET	stcopt_cg_impl.c	33;"	d	file:
+OFFSET	stcopt_cg_impl.c	46;"	d	file:
+OFFSET	stcopt_cg_impl.c	538;"	d	file:
+OutputOptData	avevar.c	/^void OutputOptData() {$/;"	f
+OutputTime	vmcclock.c	/^void OutputTime(int step) {$/;"	f
+OutputTimerParaOpt	vmcclock.c	/^void OutputTimerParaOpt() {$/;"	f
+OutputTimerPhysCal	vmcclock.c	/^void OutputTimerPhysCal() {$/;"	f
+PhysCalLanczos_fcmp	physcal_lanczos.c	/^int PhysCalLanczos_fcmp($/;"	f
+PhysCalLanczos_real	physcal_lanczos.c	/^int PhysCalLanczos_real$/;"	f
+ProjRatio	projection.c	/^inline double ProjRatio(const int *projCntNew, const int *projCntOld) {$/;"	f
+RBMDiff	rbm.c	/^void RBMDiff(double complex *srOptO, const double complex *rbmCnt, const int *eleNum) {$/;"	f
+RBMRatio	rbm.c	/^inline double complex RBMRatio(const double complex *rbmCntNew, const double complex *rbmCntOld) {$/;"	f
+ReadBuffInt	readdef.c	/^char *ReadBuffInt(FILE *fp, int *iNbuf) {$/;"	f
+ReadBuffIntCmpFlg	readdef.c	/^char *ReadBuffIntCmpFlg(FILE *fp, int *iNbuf, int *iComplexFlag) {$/;"	f
+ReadDefFileError	readdef.c	/^int ReadDefFileError(const char *defname) {$/;"	f
+ReadDefFileIdxPara	readdef.c	/^int ReadDefFileIdxPara(char *xNameListFile, MPI_Comm comm) {$/;"	f
+ReadDefFileNInt	readdef.c	/^int ReadDefFileNInt(char *xNameListFile, MPI_Comm comm) {$/;"	f
+ReadGreen	readdef.c	/^int ReadGreen(char *xNameListFile, int Nca, int **caIdx, int Ncacadc, int **cacaDCIdx, int Ns) {$/;"	f
+ReadInitParameter	parameter.c	/^int ReadInitParameter(char *initFile) {$/;"	f
+ReadInputParameters	readdef.c	/^int ReadInputParameters(char *xNameListFile, MPI_Comm comm) {$/;"	f
+ReadPairDValue	readdef.c	/^int ReadPairDValue(FILE *fp, int **ArrayIdx, double *ArrayValue, int Nsite, int NArray, char *defname) {$/;"	f
+ReadPairHopValue	readdef.c	/^int ReadPairHopValue(FILE *fp, int **ArrayIdx, double *ArrayValue, int Nsite, int NArray, char *defname) {$/;"	f
+ReduceCounter	vmcmake.c	/^void ReduceCounter(MPI_Comm comm) {$/;"	f
+ReleaseWorkSpaceComplex	workspace.c	/^void ReleaseWorkSpaceComplex() {$/;"	f
+ReleaseWorkSpaceDouble	workspace.c	/^void ReleaseWorkSpaceDouble() {$/;"	f
+ReleaseWorkSpaceInt	workspace.c	/^void ReleaseWorkSpaceInt() {$/;"	f
+ReleaseWorkSpaceThreadComplex	workspace.c	/^void ReleaseWorkSpaceThreadComplex() {$/;"	f
+ReleaseWorkSpaceThreadDouble	workspace.c	/^void ReleaseWorkSpaceThreadDouble() {$/;"	f
+ReleaseWorkSpaceThreadInt	workspace.c	/^void ReleaseWorkSpaceThreadInt() {$/;"	f
+RequestWorkSpaceComplex	workspace.c	/^void RequestWorkSpaceComplex(int n) {$/;"	f
+RequestWorkSpaceDouble	workspace.c	/^void RequestWorkSpaceDouble(int n) {$/;"	f
+RequestWorkSpaceInt	workspace.c	/^void RequestWorkSpaceInt(int n) {$/;"	f
+RequestWorkSpaceThreadComplex	workspace.c	/^void RequestWorkSpaceThreadComplex(int n) {$/;"	f
+RequestWorkSpaceThreadDouble	workspace.c	/^void RequestWorkSpaceThreadDouble(int n) {$/;"	f
+RequestWorkSpaceThreadInt	workspace.c	/^void RequestWorkSpaceThreadInt(int n) {$/;"	f
+SIZE_VecCG	stcopt_cg_impl.c	35;"	d	file:
+SIZE_VecCG	stcopt_cg_impl.c	48;"	d	file:
+SIZE_VecCG	stcopt_cg_impl.c	540;"	d	file:
+SafeMpiAllReduce	safempi.c	/^void SafeMpiAllReduce(double *send, double *recv, int nData, MPI_Comm comm) {$/;"	f
+SafeMpiAllReduce_fcmp	safempi_fcmp.c	/^void SafeMpiAllReduce_fcmp(double complex *send, double complex *recv, int nData, MPI_Comm comm) {$/;"	f
+SafeMpiBcast	safempi.c	/^void SafeMpiBcast(double *buff, int nData, MPI_Comm comm) {$/;"	f
+SafeMpiBcastInt	safempi.c	/^void SafeMpiBcastInt(int *buff, int nData, MPI_Comm comm) {$/;"	f
+SafeMpiBcast_fcmp	safempi_fcmp.c	/^void SafeMpiBcast_fcmp(double complex *buff, int nData, MPI_Comm comm) {$/;"	f
+SafeMpiReduce	safempi.c	/^void SafeMpiReduce(double *send, double *recv, int nData, MPI_Comm comm) {$/;"	f
+SafeMpiReduce_fcmp	safempi_fcmp.c	/^void SafeMpiReduce_fcmp(double complex *send, double complex *recv, int nData, MPI_Comm comm) {$/;"	f
+SetDefaultValuesModPara	readdef.c	/^void SetDefaultValuesModPara(int *bufInt, double *bufDouble) {$/;"	f
+SetFlagShift	parameter.c	/^void SetFlagShift() {$/;"	f
+SetMemory	setmemory.c	/^void SetMemory() {$/;"	f
+SetMemoryDef	setmemory.c	/^void SetMemoryDef() {  $/;"	f
+SlaterElmBFDiff_fcmp	slater.c	/^void SlaterElmBFDiff_fcmp(double complex*srOptO, const double complex ip, int *eleIdx, int *eleNum, int *eleCfg, int *eleProjConst,const int * eleProjBFCnt){$/;"	f
+SlaterElmDiff_fcmp	slater.c	/^void SlaterElmDiff_fcmp(double complex *srOptO, const double complex ip, int *eleIdx) {$/;"	f
+SlaterElmDiff_fsz	slater_fsz.c	/^void SlaterElmDiff_fsz(double complex *srOptO, const double complex ip, int *eleIdx,int *eleSpn) {$/;"	f
+SplitLoop	splitloop.c	/^void SplitLoop(int *start, int *end,$/;"	f
+StartTimer	vmcclock.c	/^void StartTimer(int n) {$/;"	f
+StochasticOpt	stcopt.c	/^int StochasticOpt(MPI_Comm comm) {$/;"	f
+StochasticOptCG	stcopt_cg.c	/^int StochasticOptCG(MPI_Comm comm)$/;"	f
+StochasticOptDiag	stcopt_pdposv.c	/^int StochasticOptDiag(MPI_Comm comm) {$/;"	f
+StopTimer	vmcclock.c	/^void StopTimer(int n) {$/;"	f
+StoreOptData	avevar.c	/^void StoreOptData(int sample){$/;"	f
+StoreSlaterElmBF_fcmp	slater.c	/^void StoreSlaterElmBF_fcmp(complex double *bufM){$/;"	f
+StoreSlaterElmBF_real	slater.c	/^void StoreSlaterElmBF_real(double *bufM){$/;"	f
+SubSlaterElmBF_fcmp	slater.c	/^void SubSlaterElmBF_fcmp(const int tri, const int trj, double complex *slt_ij, int *ijcount, double complex* slt_ji, int *jicount, const int *eleProjBFCnt){$/;"	f
+SubSlaterElmBF_real	slater.c	/^void SubSlaterElmBF_real(const int tri, const int trj, double *slt_ij, int *ijcount, double* slt_ji, int *jicount, const int *eleProjBFCnt){$/;"	f
+SyncModifiedParameter	parameter.c	/^void SyncModifiedParameter(MPI_Comm comm) {$/;"	f
+USE_IMAG	stcopt_cg_impl.c	34;"	d	file:
+USE_IMAG	stcopt_cg_impl.c	47;"	d	file:
+USE_IMAG	stcopt_cg_impl.c	539;"	d	file:
+UpdateMAll	pfupdate.c	/^void UpdateMAll(const int ma, const int s, const int *eleIdx,$/;"	f
+UpdateMAllTwo_fcmp	pfupdate_two_fcmp.c	/^void UpdateMAllTwo_fcmp(const int ma, const int s, const int mb, const int t,$/;"	f
+UpdateMAllTwo_fsz	pfupdate_two_fsz.c	/^void UpdateMAllTwo_fsz(const int ma, const int s, const int mb, const int t,$/;"	f
+UpdateMAllTwo_fsz_real	pfupdate_two_fsz_real.c	/^void UpdateMAllTwo_fsz_real(const int ma, const int s, const int mb, const int t,$/;"	f
+UpdateMAllTwo_real	pfupdate_two_real.c	/^void UpdateMAllTwo_real(const int ma, const int s, const int mb, const int t,$/;"	f
+UpdateMAll_BF_fcmp	pfupdate.c	/^void UpdateMAll_BF_fcmp(const int *icount, const int *msaTmp,$/;"	f
+UpdateMAll_BF_real	pfupdate_real.c	/^void UpdateMAll_BF_real(const int *icount, const int *msaTmp,$/;"	f
+UpdateMAll_fsz	pfupdate_fsz.c	/^void UpdateMAll_fsz(const int ma, const int s, const int *eleIdx,const int *eleSpn,$/;"	f
+UpdateMAll_fsz_real	pfupdate_fsz_real.c	/^void UpdateMAll_fsz_real(const int ma, const int s, const int *eleIdx,const int *eleSpn,$/;"	f
+UpdateMAll_real	pfupdate_real.c	/^void UpdateMAll_real(const int ma, const int s, const int *eleIdx,$/;"	f
+UpdateProjCnt	projection.c	/^void UpdateProjCnt(const int ri, const int rj, const int s,$/;"	f
+UpdateProjCnt_fsz	projection.c	/^void UpdateProjCnt_fsz(const int ri, const int rj, const int s,const int t,$/;"	f
+UpdateQPWeight	qp.c	/^void UpdateQPWeight() {$/;"	f
+UpdateRBMCnt	rbm.c	/^void UpdateRBMCnt(const int ri, const int rj, const int s,$/;"	f
+UpdateRBMCnt_fsz	rbm.c	/^void UpdateRBMCnt_fsz(const int ri, const int rj, const int s, const int t,$/;"	f
+UpdateSlaterElmBFGrn	slater.c	/^void UpdateSlaterElmBFGrn(const int ma, const int ra, const int rb, const int u,$/;"	f
+UpdateSlaterElmBFGrn_real	slater.c	/^void UpdateSlaterElmBFGrn_real(const int ma, const int ra, const int rb, const int u, $/;"	f
+UpdateSlaterElmBF_fcmp	slater.c	/^void UpdateSlaterElmBF_fcmp(const int ma, const int ra, const int rb, const int u,$/;"	f
+UpdateSlaterElm_fcmp	slater.c	/^void UpdateSlaterElm_fcmp() {$/;"	f
+UpdateSlaterElm_fsz	slater_fsz.c	/^void UpdateSlaterElm_fsz() {$/;"	f
+VMCMainCal	vmccal.c	/^void VMCMainCal(MPI_Comm comm) {$/;"	f
+VMCMainCal_fsz	vmccal_fsz.c	/^void VMCMainCal_fsz(MPI_Comm comm) {$/;"	f
+VMCMakeSample	vmcmake.c	/^void VMCMakeSample(MPI_Comm comm) {$/;"	f
+VMCMakeSample_fsz	vmcmake_fsz.c	/^void VMCMakeSample_fsz(MPI_Comm comm) {$/;"	f
+VMCMakeSample_fsz_real	vmcmake_fsz_real.c	/^void VMCMakeSample_fsz_real(MPI_Comm comm) {$/;"	f
+VMCMakeSample_real	vmcmake_real.c	/^void VMCMakeSample_real(MPI_Comm comm) {$/;"	f
+VMCParaOpt	vmcmain.c	/^int VMCParaOpt(MPI_Comm comm_parent, MPI_Comm comm_child1, MPI_Comm comm_child2) {$/;"	f
+VMCPhysCal	vmcmain.c	/^int VMCPhysCal(MPI_Comm comm_parent, MPI_Comm comm_child1, MPI_Comm comm_child2) {$/;"	f
+VMC_BF_MainCal	vmccal.c	/^void VMC_BF_MainCal(MPI_Comm comm) {$/;"	f
+VMC_BF_MakeSample	vmcmake.c	/^void VMC_BF_MakeSample(MPI_Comm comm)$/;"	f
+VMC_BF_MakeSample_real	vmcmake_real.c	/^void VMC_BF_MakeSample_real(MPI_Comm comm) {$/;"	f
+ValidateValue	readdef.c	/^int ValidateValue($/;"	f
+WeightAverageGreenFunc	average.c	/^void WeightAverageGreenFunc(MPI_Comm comm) {$/;"	f
+WeightAverageSROpt	average.c	/^void WeightAverageSROpt(MPI_Comm comm) {$/;"	f
+WeightAverageSROpt_real	average.c	/^void WeightAverageSROpt_real(MPI_Comm comm) {$/;"	f
+WeightAverageWE	average.c	/^void WeightAverageWE(MPI_Comm comm) {$/;"	f
+WeightRBM	rbm.c	/^inline double complex WeightRBM(const double complex *rbmCnt) {$/;"	f
+WriteHeader	avevar.c	/^void WriteHeader(char* cNKWidx, int NKWidx, FILE *fp){$/;"	f
+_CALGRN_FSZ_SRC	calgrn_fsz.c	30;"	d	file:
+_CALGRN_SRC	calgrn.c	30;"	d	file:
+_INITFILE_SRC	initfile.c	31;"	d	file:
+_LEGENDREPOLY_SRC	legendrepoly.c	30;"	d	file:
+_NOTBACKFLOW	readdef.c	36;"	d	file:
+_PFUDATE_FSZ_REAL_SRC	pfupdate_fsz_real.c	30;"	d	file:
+_PFUDATE_FSZ_SRC	pfupdate_fsz.c	31;"	d	file:
+_PFUDATE_SRC	pfupdate.c	30;"	d	file:
+_PFUDATE_TWO_FSZ_REAL_SRC	pfupdate_two_fsz_real.c	30;"	d	file:
+_QP_SRC	qp.c	30;"	d	file:
+_SRC_AVERAGE	average.c	32;"	d	file:
+_SRC_AVEVAR	avevar.c	32;"	d	file:
+_SRC_CALHAMREAL	calham_real.c	29;"	d	file:
+_SRC_LOCGRN_REAL	locgrn_real.c	37;"	d	file:
+_SRC_LSLOCGRN_CMP	lslocgrn.c	31;"	d	file:
+_SRC_LSLOCGRN_REAL	lslocgrn_real.c	30;"	d	file:
+_SRC_MATRIX	matrix.c	30;"	d	file:
+_SRC_PARAMETER	parameter.c	30;"	d	file:
+_SRC_PFUPDATE_TWO_FCMP	pfupdate_two_fcmp.c	30;"	d	file:
+_SRC_PFUPDATE_TWO_REAL	pfupdate_two_real.c	31;"	d	file:
+_SRC_QP_REAL	qp_real.c	31;"	d	file:
+_SRC_SETMEMORY	setmemory.c	35;"	d	file:
+_SRC_SPLITLOOP	splitloop.c	30;"	d	file:
+_SRC_STCOPT_DPOSV	stcopt_dposv.c	30;"	d	file:
+_SRC_STCOPT_PDPOSV	stcopt_pdposv.c	31;"	d	file:
+_SRC_TIME	vmcclock.c	32;"	d	file:
+_SRC_VMCCAL	vmccal.c	29;"	d	file:
+_SRC_VMCCAL_FSZ	vmccal_fsz.c	29;"	d	file:
+_SRC_VMCMAKE	vmcmake.c	32;"	d	file:
+_SRC_VMCMAKE_FSZ	vmcmake_fsz.c	30;"	d	file:
+_SRC_VMCMAKE_FSZ_REAL	vmcmake_fsz_real.c	29;"	d	file:
+_SRC_VMCMAKE_REAL	vmcmake_real.c	30;"	d	file:
+calHCA	lslocgrn.c	/^double complex calHCA(const int ri, const int rj, const int s,$/;"	f
+calHCA1	lslocgrn.c	/^double complex calHCA1(const int ri, const int rj, const int s,$/;"	f
+calHCA1_real	lslocgrn_real.c	/^double calHCA1_real(const int ri, const int rj, const int s,$/;"	f
+calHCA2	lslocgrn.c	/^double complex calHCA2(const int ri, const int rj, const int s,$/;"	f
+calHCA2_real	lslocgrn_real.c	/^double calHCA2_real(const int ri, const int rj, const int s,$/;"	f
+calHCACA	lslocgrn.c	/^double complex calHCACA(const int ri, const int rj, const int rk, const int rl,$/;"	f
+calHCACA1	lslocgrn.c	/^double complex calHCACA1(const int ri, const int rj, const int rk, const int rl,$/;"	f
+calHCACA1_real	lslocgrn_real.c	/^double calHCACA1_real(const int ri, const int rj, const int rk, const int rl,$/;"	f
+calHCACA2	lslocgrn.c	/^double complex calHCACA2(const int ri, const int rj, const int rk, const int rl,$/;"	f
+calHCACA2_real	lslocgrn_real.c	/^double calHCACA2_real(const int ri, const int rj, const int rk, const int rl,$/;"	f
+calHCACA_real	lslocgrn_real.c	/^double calHCACA_real(const int ri, const int rj, const int rk, const int rl,$/;"	f
+calHCA_real	lslocgrn_real.c	/^double calHCA_real(const int ri, const int rj, const int s,$/;"	f
+calculateHK	lslocgrn.c	/^double complex calculateHK(const double complex h1, const double complex ip, int *eleIdx, int *eleCfg,$/;"	f
+calculateHK_real	lslocgrn_real.c	/^double calculateHK_real(const double h1, const double ip, int *eleIdx, int *eleCfg,$/;"	f
+calculateHW	lslocgrn.c	/^double complex calculateHW(const double complex h1, const double complex ip, int *eleIdx, int *eleCfg,$/;"	f
+calculateHW_real	lslocgrn_real.c	/^double calculateHW_real(const double h1, const double ip, int *eleIdx, int *eleCfg,$/;"	f
+calculateMAll_BF_fcmp_child	matrix.c	/^int calculateMAll_BF_fcmp_child($/;"	f
+calculateMAll_BF_real_child	matrix.c	/^int calculateMAll_BF_real_child(const int *eleIdx, const int qpStart, const int qpEnd, const int qpidx,$/;"	f
+calculateMAll_child_fcmp	matrix.c	/^int calculateMAll_child_fcmp(const int *eleIdx, const int qpStart, const int qpEnd, const int qpidx,$/;"	f
+calculateMAll_child_fsz	matrix.c	/^int calculateMAll_child_fsz(const int *eleIdx,const int *eleSpn, const int qpStart, const int qpEnd, const int qpidx,$/;"	f
+calculateMAll_child_fsz_real	matrix.c	/^int calculateMAll_child_fsz_real(const int *eleIdx,const int *eleSpn, const int qpStart, const int qpEnd, const int qpidx,$/;"	f
+calculateMAll_child_real	matrix.c	/^int calculateMAll_child_real(const int *eleIdx, const int qpStart, const int qpEnd, const int qpidx,$/;"	f
+calculateNewPfMBFN4_child	pfupdate.c	/^double complex calculateNewPfMBFN4_child(const int qpidx, const int n, const int *msa,$/;"	f
+calculateNewPfMBFN4_real_child	pfupdate_real.c	/^double calculateNewPfMBFN4_real_child(const int qpidx, const int n, const int *msa,$/;"	f
+calculateNewPfMN_child	locgrn.c	/^double complex calculateNewPfMN_child(const int qpidx, const int n, const int *msa, const int *rsa,$/;"	f
+calculateNewPfMN_real_child	locgrn_real.c	/^double calculateNewPfMN_real_child(const int qpidx, const int n, const int *msa, const int *rsa,$/;"	f
+calculateNewPfMTwo_child_fcmp	pfupdate_two_fcmp.c	/^void calculateNewPfMTwo_child_fcmp(const int ma, const int s, const int mb, const int t,$/;"	f
+calculateNewPfMTwo_child_fsz	pfupdate_two_fsz.c	/^void calculateNewPfMTwo_child_fsz(const int ma, const int s, const int mb, const int t,$/;"	f
+calculateNewPfMTwo_child_fsz_real	pfupdate_two_fsz_real.c	/^void calculateNewPfMTwo_child_fsz_real(const int ma, const int s, const int mb, const int t,$/;"	f
+calculateNewPfMTwo_child_real	pfupdate_two_real.c	/^void calculateNewPfMTwo_child_real(const int ma, const int s, const int mb, const int t,$/;"	f
+calculateOO	vmccal.c	/^void calculateOO(double complex *srOptOO, double complex *srOptHO, const double complex *srOptO,$/;"	f
+calculateOO_Store	vmccal.c	/^void calculateOO_Store(double complex *srOptOO, double complex *srOptHO, double complex *srOptO_Store,$/;"	f
+calculateOO_Store_real	vmccal.c	/^void calculateOO_Store_real(double *srOptOO_real, double *srOptHO_real, double *srOptO_Store_real,$/;"	f
+calculateOO_matvec	vmccal.c	/^void calculateOO_matvec(double complex *srOptOO, double complex *srOptHO, const double complex *srOptO,$/;"	f
+calculateOO_real	vmccal.c	/^void calculateOO_real(double *srOptOO, double *srOptHO, const double *srOptO,$/;"	f
+calculateOptTransDiff	vmccal.c	/^void calculateOptTransDiff(double complex *srOptO, const double complex ipAll) {$/;"	f
+calculateQCACAQ	vmccal.c	/^void calculateQCACAQ(double complex *qcacaq, const double complex *lslca, const double w,$/;"	f
+calculateQCACAQ_real	vmccal.c	/^void calculateQCACAQ_real(double *qcacaq, const double *lslca, const double w,$/;"	f
+calculateQCAQ	vmccal.c	/^void calculateQCAQ(double complex*qcaq, const double complex*lslca, const double complex*lslq,$/;"	f
+calculateQCAQ_real	vmccal.c	/^void calculateQCAQ_real(double *qcaq, const double *lslca, const double *lslq,$/;"	f
+calculateQQQQ	vmccal.c	/^void calculateQQQQ(double complex *qqqq, const double complex*lslq, const double w, const int nLSHam) {$/;"	f
+calculateQQQQ_real	vmccal.c	/^void calculateQQQQ_real(double *qqqq, const double *lslq, const double w, const int nLSHam) {$/;"	f
+checkGF1	lslocgrn.c	/^double complex checkGF1(const int ri, const int rj, const int s, const double complex ip,$/;"	f
+checkGF1_real	lslocgrn_real.c	/^double checkGF1_real(const int ri, const int rj, const int s, const double ip,$/;"	f
+checkGF2	lslocgrn.c	/^double complex checkGF2(const int ri, const int rj, const int rk, const int rl,$/;"	f
+checkGF2_real	lslocgrn_real.c	/^double checkGF2_real(const int ri, const int rj, const int rk, const int rl,$/;"	f
+clearPhysQuantity	vmccal.c	/^void clearPhysQuantity(){$/;"	f
+copyFromBurnSample	vmcmake.c	/^void copyFromBurnSample(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt) {$/;"	f
+copyFromBurnSampleBF	vmcmake.c	/^void copyFromBurnSampleBF(int *eleIdx) {$/;"	f
+copyFromBurnSampleRBM	rbm.c	/^void copyFromBurnSampleRBM(double complex *rbmCnt) {$/;"	f
+copyFromBurnSample_fsz	vmcmake_fsz.c	/^void copyFromBurnSample_fsz(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt,int *eleSpn) {$/;"	f
+copyMAll	lslocgrn.c	/^void copyMAll(complex double *invM_from, complex double *pfM_from, complex double *invM_to, complex double *pfM_to) {$/;"	f
+copyMAll_real	lslocgrn_real.c	/^void copyMAll_real(double *invM_from, double *pfM_from, double *invM_to, double *pfM_to) {$/;"	f
+copyToBurnSample	vmcmake.c	/^void copyToBurnSample(const int *eleIdx, const int *eleCfg, const int *eleNum, const int *eleProjCnt) {$/;"	f
+copyToBurnSampleBF	vmcmake.c	/^void copyToBurnSampleBF(const int *eleIdx) {$/;"	f
+copyToBurnSampleRBM	rbm.c	/^void copyToBurnSampleRBM(double complex *rbmCnt) {$/;"	f
+copyToBurnSample_fsz	vmcmake_fsz.c	/^void copyToBurnSample_fsz(const int *eleIdx, const int *eleCfg, const int *eleNum, const int *eleProjCnt,const int *eleSpn) {$/;"	f
+fileCopyAdd	initfile.c	/^int fileCopyAdd(char *inputfileName, FILE *ofp){$/;"	f
+fn_StochasticOptCG	stcopt_cg_impl.c	/^int fn_StochasticOptCG(MPI_Comm comm) {$/;"	f
+fn_StochasticOptCG	stcopt_cg_impl.c	24;"	d	file:
+fn_StochasticOptCG	stcopt_cg_impl.c	37;"	d	file:
+fn_StochasticOptCG	stcopt_cg_impl.c	530;"	d	file:
+fn_StochasticOptCG_Init	stcopt_cg_impl.c	/^void fn_StochasticOptCG_Init(const int nSmat, int *const smatToParaIdx, double *VecCG) {$/;"	f
+fn_StochasticOptCG_Init	stcopt_cg_impl.c	25;"	d	file:
+fn_StochasticOptCG_Init	stcopt_cg_impl.c	38;"	d	file:
+fn_StochasticOptCG_Init	stcopt_cg_impl.c	531;"	d	file:
+fn_StochasticOptCG_Main	stcopt_cg_impl.c	/^int fn_StochasticOptCG_Main(const int nSmat, double *VecCG, MPI_Comm comm) {$/;"	f
+fn_StochasticOptCG_Main	stcopt_cg_impl.c	26;"	d	file:
+fn_StochasticOptCG_Main	stcopt_cg_impl.c	39;"	d	file:
+fn_StochasticOptCG_Main	stcopt_cg_impl.c	532;"	d	file:
+fn_operate_by_S	stcopt_cg_impl.c	/^int fn_operate_by_S(int nSmat, double *x, double *z, double *VecCG, MPI_Comm comm) {$/;"	f
+fn_operate_by_S	stcopt_cg_impl.c	27;"	d	file:
+fn_operate_by_S	stcopt_cg_impl.c	40;"	d	file:
+fn_operate_by_S	stcopt_cg_impl.c	533;"	d	file:
+fn_print_Smat_stderr	stcopt_cg_impl.c	/^void fn_print_Smat_stderr(const int nSmat, double *VecCG, MPI_Comm comm){$/;"	f
+fn_print_Smat_stderr	stcopt_cg_impl.c	28;"	d	file:
+fn_print_Smat_stderr	stcopt_cg_impl.c	41;"	d	file:
+fn_print_Smat_stderr	stcopt_cg_impl.c	534;"	d	file:
+getLWork	matrix.c	/^int getLWork() {$/;"	f
+getLWork_fcmp	matrix.c	/^int getLWork_fcmp() {$/;"	f
+getUpdateType	vmcmake.c	/^UpdateType getUpdateType(int path) {$/;"	f
+initMultiDefMode	vmcmain.c	/^void initMultiDefMode(int nMultiDef, char *fileDirList, MPI_Comm comm_parent, MPI_Comm *comm_child1) {$/;"	f
+initializeWorkSpaceAll	workspace.c	/^void initializeWorkSpaceAll() {$/;"	f
+main	vmcdry.c	/^int main(int argc, char *argv[])$/;"	f
+main	vmcmain.c	/^int main(int argc, char* argv[])$/;"	f
+makeCandidate_LocalSpinFlip_conduction	vmcmake_fsz.c	/^void makeCandidate_LocalSpinFlip_conduction(int *mi_, int *ri_, int *rj_, int *s_,int *t_, int *rejectFlag_,$/;"	f
+makeCandidate_LocalSpinFlip_localspin	vmcmake_fsz.c	/^void makeCandidate_LocalSpinFlip_localspin(int *mi_, int *ri_, int *rj_, int *s_,int *t_, int *rejectFlag_,$/;"	f
+makeCandidate_exchange	vmcmake.c	/^void makeCandidate_exchange(int *mi_, int *ri_, int *rj_, int *s_, int *rejectFlag_,$/;"	f
+makeCandidate_exchange_fsz	vmcmake_fsz.c	/^void makeCandidate_exchange_fsz(int *mi_, int *ri_, int *rj_, int *s_, int *rejectFlag_,$/;"	f
+makeCandidate_hopping	vmcmake.c	/^void makeCandidate_hopping(int *mi_, int *ri_, int *rj_, int *s_, int *rejectFlag_,$/;"	f
+makeCandidate_hopping_csz	vmcmake_fsz.c	/^void makeCandidate_hopping_csz(int *mi_, int *ri_, int *rj_, int *s_,int *t_, int *rejectFlag_,$/;"	f
+makeCandidate_hopping_fsz	vmcmake_fsz.c	/^void makeCandidate_hopping_fsz(int *mi_, int *ri_, int *rj_, int *s_,int *t_, int *rejectFlag_,$/;"	f
+makeInitialSample	vmcmake.c	/^int makeInitialSample(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt,$/;"	f
+makeInitialSampleBF	vmcmake.c	/^int makeInitialSampleBF(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt, int *eleProjBFCnt,$/;"	f
+makeInitialSampleBF_real	vmcmake_real.c	/^int makeInitialSampleBF_real(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt, int *eleProjBFCnt,$/;"	f
+makeInitialSample_fsz	vmcmake_fsz.c	/^int makeInitialSample_fsz(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt,int *eleSpn,$/;"	f
+makeInitialSample_fsz_real	vmcmake_fsz_real.c	/^int makeInitialSample_fsz_real(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt,int *eleSpn,$/;"	f
+makeInitialSample_real	vmcmake_real.c	/^int makeInitialSample_real(int *eleIdx, int *eleCfg, int *eleNum, int *eleProjCnt,$/;"	f
+outputData	vmcmain.c	/^void outputData() {$/;"	f
+printOption	vmcmain.c	/^void printOption() {$/;"	f
+printUsageError	vmcmain.c	/^void printUsageError() {$/;"	f
+revertEleConfig	vmcmake.c	/^void revertEleConfig(int mi, int ri, int rj, int s,$/;"	f
+revertEleConfig_fsz	vmcmake_fsz.c	/^void revertEleConfig_fsz(int mi, int org_r, int dst_r, int org_spn,int dst_spn,$/;"	f
+saveEleConfig	vmcmake.c	/^void saveEleConfig(const int sample, const double complex logIp,$/;"	f
+saveEleConfigBF	vmcmake.c	/^void saveEleConfigBF(const int sample, const double logIp,$/;"	f
+saveEleConfig_fsz	vmcmake_fsz.c	/^void saveEleConfig_fsz(const int sample, const double complex logIp,$/;"	f
+saveRBMCnt	rbm.c	/^void saveRBMCnt(const int sample, const double complex *rbmCnt) {$/;"	f
+shiftDH2	parameter.c	/^double shiftDH2() {$/;"	f
+shiftDH4	parameter.c	/^double shiftDH4() {$/;"	f
+shiftGJ	parameter.c	/^void shiftGJ() {$/;"	f
+sortEleConfig	vmcmake.c	/^void sortEleConfig(int *eleIdx, int *eleCfg, const int *eleNum) {$/;"	f
+stcOptInit	stcopt_dposv.c	/^void stcOptInit(double *const S, double *const g, const int nSmat, const int *const smatToParaIdx) {$/;"	f
+stcOptMain	stcopt_dposv.c	/^int stcOptMain(double *g, const int nSmat, const int * const smatToParaIdx, MPI_Comm comm)$/;"	f
+stcOptMain	stcopt_pdposv.c	/^int stcOptMain(double *r, const int nSmat, const int *smatToParaIdx, MPI_Comm comm) {$/;"	f
+stcOptMainDiag	stcopt_pdposv.c	/^int stcOptMainDiag(double *const r, int const nSmat, int *const smatToParaIdx,$/;"	f
+updateEleConfig	vmcmake.c	/^void updateEleConfig(int mi, int ri, int rj, int s,$/;"	f
+updateEleConfig_fsz	vmcmake_fsz.c	/^void updateEleConfig_fsz(int mi, int org_r, int dst_r, int org_spn,int dst_spn,$/;"	f
+updateMAllTwo_child_fcmp	pfupdate_two_fcmp.c	/^void updateMAllTwo_child_fcmp(const int ma, const int s, const int mb, const int t,$/;"	f
+updateMAllTwo_child_fsz	pfupdate_two_fsz.c	/^void updateMAllTwo_child_fsz(const int ma, const int s, const int mb, const int t,$/;"	f
+updateMAllTwo_child_fsz_real	pfupdate_two_fsz_real.c	/^void updateMAllTwo_child_fsz_real(const int ma, const int s, const int mb, const int t,$/;"	f
+updateMAllTwo_child_real	pfupdate_two_real.c	/^void updateMAllTwo_child_real(const int ma, const int s, const int mb, const int t,$/;"	f
+updateMAll_BF_fcmp_child	pfupdate.c	/^double complex updateMAll_BF_fcmp_child($/;"	f
+updateMAll_BF_real_child	pfupdate_real.c	/^double updateMAll_BF_real_child(const int qpidx, const int n, const int *msa,$/;"	f
+updateMAll_child	pfupdate.c	/^void updateMAll_child(const int ma, const int s, const int *eleIdx,$/;"	f
+updateMAll_child_fsz	pfupdate_fsz.c	/^void updateMAll_child_fsz(const int ma, const int s, const int *eleIdx,const int *eleSpn,$/;"	f
+updateMAll_child_fsz_real	pfupdate_fsz_real.c	/^void updateMAll_child_fsz_real(const int ma, const int s, const int *eleIdx,const int *eleSpn,$/;"	f
+updateMAll_child_real	pfupdate_real.c	/^void updateMAll_child_real(const int ma, const int s, const int *eleIdx,$/;"	f
+weightAverageReduce	average.c	/^void weightAverageReduce(int n, double *vec, MPI_Comm comm) {$/;"	f
+weightAverageReduce_fcmp	average.c	/^void weightAverageReduce_fcmp(int n, double  complex *vec, MPI_Comm comm) {$/;"	f
+weightAverageReduce_real	average.c	/^void weightAverageReduce_real(int n, double *vec, MPI_Comm comm) {$/;"	f
+writeConfig	initfile.c	/^void writeConfig(char *xnamefile, char *fileName) {$/;"	f
+xdot	stcopt_cg.c	/^inline double xdot(const int n, const double * const p, const double * const q) {$/;"	f
