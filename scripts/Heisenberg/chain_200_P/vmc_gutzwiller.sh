@@ -13,11 +13,13 @@ cd vmc_gutzwiller_inputs
 ../../../../programs/vmc_gutzwiller/monte_carlo_tj.x <VMC.in >VMC.out
 
 #Read data 
-echo "0 10000 5 0" | ../../../../programs/vmc_gutzwiller/read_ene.x  #energy per spin (<H>/N) + error
+echo "0 10000 5 0" | ../../../../programs/vmc_gutzwiller/read_ene.x >reading  #energy per spin (<H>/N) + error
 echo "<H>/N: $(tail -n 1 fort.20)"
 
-echo "0 10000 5 1" | ../../../../programs/vmc_gutzwiller/read_ene.x  #energy**2 per spin (<H**2>/N) + error
+echo "0 10000 5 1" | ../../../../programs/vmc_gutzwiller/read_ene.x >reading #energy**2 per spin (<H**2>/N) + error
 echo "<H**2>/N: $(tail -n 1 fort.20)"
+
+#Note: statistical errors can be reduced by performing more MC steps
 
 
 
