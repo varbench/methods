@@ -1,0 +1,17 @@
+&montecarlo
+itestr=2         
+iseed=121   
+iopt=1           
+iread=0          
+nw=1             
+ngen=500000      
+nscra=200        
+epst=1.d-10      
+/
+&fixednode
+/
+&vmc
+nbra=200         
+/
+&optimization
+/
