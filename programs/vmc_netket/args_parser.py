@@ -90,7 +90,7 @@ def get_parser():
         "--net",
         type=str,
         default="jas",
-        choices=["jas", "rbm", "rnn_lstm"],
+        choices=["jas", "rbm", "gcnn", "rnn_lstm"],
         help="network type",
     )
     group.add_argument(
@@ -228,7 +228,7 @@ def get_ham_net_name(args):
     net_name = "{net}"
     if args.net == "rbm":
         net_name += "_a{features}"
-    elif args.net.startswith("rnn"):
+    elif args.net != "jas":
         net_name += "_l{layers}_f{features}"
 
     net_name += "_{optimizer}"

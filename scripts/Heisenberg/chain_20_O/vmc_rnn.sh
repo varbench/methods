@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd programs/vmc_netket || exit
+python3 vmc.py --ham heis --boundary open --sign mars --ham_dim 1 --L 20 --net rnn_lstm --layers 2 --features 16 --seed 123 --optimizer adam --max_step 100000 --show_progress

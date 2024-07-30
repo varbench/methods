@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 import time
-from functools import partial
 
-import jax
 import netket as nk
 import optax
 from jax import numpy as jnp
@@ -119,10 +117,13 @@ def get_ham():
 def get_net(graph, hilbert):
     N = hilbert.size
     if args.net == "jas":
+        assert args.layers == 1
+        assert args.features == 1
         return nk.models.Jastrow(
             param_dtype=args.dtype, kernel_init=truncated_normal(stddev=1 / N)
         )
     elif args.net == "rbm":
+        assert args.layers == 1
         alpha = args.features
         if jnp.issubdtype(args.dtype, jnp.floating):
             kernel_init = truncated_normal(stddev=1 / (alpha**0.5 * N))
@@ -136,6 +137,13 @@ def get_net(graph, hilbert):
             kernel_init=kernel_init,
             hidden_bias_init=zeros,
             visible_bias_init=zeros,
+        )
+    elif args.net == "gcnn":
+        return nk.models.GCNN(
+            symmetries=graph,
+            layers=args.layers,
+            features=args.features,
+            param_dtype=args.dtype,
         )
     elif args.net == "rnn_lstm":
         return nkx.models.LSTMNet(
@@ -196,7 +204,7 @@ def get_optimizer():
         optimizer = optax.contrib.split_real_and_imaginary(optimizer)
 
     if args.optimizer == "sr":
-        solver = partial(jax.scipy.sparse.linalg.cg, tol=1e-7, atol=1e-7, maxiter=20)
+        solver = nk.optimizer.solver.solve
         diag_shift = optax.linear_schedule(
             args.diag_shift, 0.1 * args.diag_shift, args.max_step
         )
@@ -210,15 +218,31 @@ def get_optimizer():
 
 
 def get_vmc(H, vstate, optimizer, preconditioner):
-    vmc = nk.VMC(
-        H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner
-    )
+    if (
+        preconditioner == identity_preconditioner
+        or vstate.n_parameters < vstate.n_samples
+    ):
+        vmc = nk.VMC(
+            H,
+            variational_state=vstate,
+            optimizer=optimizer,
+            preconditioner=preconditioner,
+        )
+    else:
+        vmc = nkx.driver.VMC_SRt(
+            H,
+            variational_state=vstate,
+            optimizer=optimizer,
+            diag_shift=preconditioner.diag_shift,
+        )
+
     logger = nk.logging.JsonLog(
         args.log_filename,
         "w",
         save_params_every=max(args.max_step // 100, 1),
         write_every=max(args.max_step // 100, 1),
     )
+
     return vmc, logger
 
 
