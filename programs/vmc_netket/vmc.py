@@ -146,7 +146,7 @@ def get_net(graph, hilbert):
             param_dtype=args.dtype,
         )
     elif args.net == "rnn_lstm":
-        return nkx.models.LSTMNet(
+        return nkx.models.FastLSTMNet(
             hilbert=hilbert,
             layers=args.layers,
             features=args.features,
