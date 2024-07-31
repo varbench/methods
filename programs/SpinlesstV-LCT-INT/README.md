@@ -1,7 +1,7 @@
 LCT-INT (**L**inear scaling **C**ontinous-**T**ime **INT**eraction expansion) for spinless fermions
 =============================
 
-Copied from https://github.com/wangleiphy/SpinlesstV-LCT-INT
+Copied from https://github.com/wangleiphy/SpinlesstV-LCT-INT . This code uses $V \sum_{\langle i, j \rangle} (n_i - \frac{1}{2}) (n_j - \frac{1}{2})$, so the energy per site differs by $V$ from the results in the VarBench dataset.
 
 This is the (original and fresh) code used for the paper
 - Lei Wang, Mauro Iazzi, Philippe Corboz, and Matthias Troyer, "Efficient continuous-time quantum Monte Carlo method for the ground state of correlated fermions", [Phys. Rev. B 91, 235151 (2015)](http://dx.doi.org/10.1103/PhysRevB.91.235151)
