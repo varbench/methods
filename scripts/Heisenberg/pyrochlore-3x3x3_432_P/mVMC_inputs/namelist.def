@@ -4,5 +4,5 @@ InterAll            interall.def
 Orbital            orbitalidx.def
 TransSym           qptransidx.def
 SpinRBM_HiddenLayer   crbm_hlayeridx.def
-SpinRBM_PhysLaye      crbm_playeridx.def
+SpinRBM_PhysLayer     crbm_playeridx.def
 SpinRBM_PhysHidden    crbm_phidx.def

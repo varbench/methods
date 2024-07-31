@@ -1,5 +1,8 @@
 .DS_Store
 
+# mVMC
+output/
+
 # vmc_gutzwiller
 VMC.out
 fort.*
