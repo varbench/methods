@@ -15,7 +15,7 @@ cd vmc_gutzwiller_inputs || exit
 ../../../../programs/vmc_gutzwiller/monte_carlo_tj.x <VMC.in >VMC.out
 
 #Read data
-echo "0 10000 5 0" | ../../../../programs/vmc_gutzwiller/read_ene.x >reading  #energy (<H>/N) + error
+echo "0 10000 5 0" | ../../../../programs/vmc_gutzwiller/read_ene.x >reading #energy (<H>/N) + error
 echo "<H>/N: $(tail -n 1 fort.20)"
 
 echo "0 10000 5 1" | ../../../../programs/vmc_gutzwiller/read_ene.x >reading #energy**2 (<H**2>/N**2) + error
