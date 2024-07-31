@@ -3,6 +3,9 @@
 # mVMC
 output/
 
+# SpinlesstV-LCT-INT
+**/lct_int_inputs/**/*.h5
+
 # vmc_gutzwiller
 VMC.out
 fort.*
