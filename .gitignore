@@ -4,7 +4,7 @@
 output/
 
 # SpinlesstV-LCT-INT
-**/lct_int_inputs/**/*.h5
+**/lct_int_inputs/test.chkp/
 
 # vmc_gutzwiller
 VMC.out
