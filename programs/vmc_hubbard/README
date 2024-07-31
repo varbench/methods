@@ -1,0 +1,10 @@
+Code short description:
+
+-) Prep_uniform_wf.f: Prepares the lattice and the variational wave function in the uniform case.
+-) Prep_stripes_wf.f: Prepares the lattice and the variational wave function in the stripe case.
+-) MC_uniform_wf.f: Performs the Monte Carlo run for optimizing the variational parameters in the uniform wave function and accumulating statistics for computing the energy.
+-) MC_stripe_wf.f: Performs the Monte Carlo run for optimizing the variational parameters in the stripe wave function and accumulating statistics for computing the energy.
+-) Random.c: Random number generator, to be compiled together with the Monte Carlo codes.
+-) Parameters.f: Computes the optimal variational parameters after the Monte Carlo optimization run.
+-) Energy.f90: Computes the energy and the energy squared after the Monte Carlo run.
+-) Variance.f: Computes the variance, given the energy and the energy squared.

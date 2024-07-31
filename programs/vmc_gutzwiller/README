@@ -6,5 +6,3 @@ Run compile.sh to compile codes. This requires Fortran and C compilers (assuming
 Compilation tested with the following compilers on a Linux machine:
 -) GNU Fortran (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
 -) gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
-
-
