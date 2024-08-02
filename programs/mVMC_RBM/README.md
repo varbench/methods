@@ -1,10 +1,13 @@
 # mVMC
 
-Copied from https://github.com/issp-center-dev/mVMC , modified to implement RBM
+Version 1.1.0 copied from https://github.com/issp-center-dev/mVMC, modified with Restricted Boltzmann machine (RBM)
+as developed and implemented by Kota Ido and Takahiro Misawa.
+
+
 
 A numerical solver package for a wide range of quantum lattice models based on many-variable Variational Monte Carlo method
 
-### What is mVMC ?
+### What is mVMC ? 
 
 mVMC (many-variable Variational Monte Carlo method)
 is a software for performing the highly-accurate
