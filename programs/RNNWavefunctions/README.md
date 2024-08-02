@@ -14,11 +14,8 @@ Our implementation works on Python (3.6.10) with TensorFlow (1.13.1) and NumPy (
 ## Content
 This repository contains the following folders:
 
-* **1DTFIM**: an implementation of the 1D Positive Recurrent Neural Network (pRNN) Wave Function for the purpose of finding the ground state of the 1D Transverse-field Ferromagnetic Ising Model (TFIM).
-
 
 * **2DRNN**: an implementation of the 2D Positive Recurrent Neural Network Wave Function for the purpose of finding the ground state of the 2D TFIM.
-
 
 * **2DHeisenberg**: an implementation of the 2D Complex Recurrent Neural Network Wave Function with tensorization for the purpose of finding the ground state of the 2D Heisenberg model both in the square and the triangular lattices as described in our [NeurIPS 2021 paper](https://ml4physicalsciences.github.io/2021/files/NeurIPS_ML4PS_2021_92.pdf).
 
