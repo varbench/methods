@@ -6,7 +6,7 @@ For detailed information on forkTPS, please refer to [Daniel's paper](https://jo
 
 ## Dependencies
 
-This [forkTPS](https://github.com/TRIQS/forktps)(private yet, please contact @xiaodongcao for permission) library depends on:
+This [forkTPS](https://github.com/TRIQS/forktps)(private yet, please contact [@xiaodongcao](https://github.com/xiaodongcao) for permission) library depends on:
 1. [TRIQS](https://triqs.github.io/triqs/latest/install.html) for DMFT-related calculations
 2. [ITensor (C++ version)](https://itensor.org/) as the backbone for tensor operations
 
@@ -16,7 +16,9 @@ Both TRIQS and ITensor are open-source libraries. Please follow their respective
 
 ### 1. TRIQS
 
-Our calculations were performed using TRIQS version 3.1.x. Use the following bash script for installation:
+First, install the [C++ requirements of TRIQS](https://triqs.github.io/triqs/latest/installation/requirements.html) on your system. Also create a Python virtual environment, and install the Python requirements with `pip install -r requirements.txt`.
+
+Our calculations were performed using TRIQS version 3.1.1. Use the following bash script for installation:
 
 
 ```bash
@@ -30,7 +32,7 @@ INSTALL_PREFIX=$(pwd)/install
 NCORES=16
 
 # Clone the git repository of triqs
-git clone -b 3.1.x https://github.com/TRIQS/triqs triqs.src
+git clone -b 3.1.1 https://github.com/TRIQS/triqs triqs.src
 # Use cmake to configure the triqs build process
 mkdir -p triqs.build && cd triqs.build
 cmake ../triqs.src -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX
@@ -42,7 +44,7 @@ cd ../
 # Load the triqs installation into your environment
 source $INSTALL_PREFIX/share/triqs/triqsvars.sh
 
-echo 
+echo
 echo "If you want to automatically load triqs into your environment,"
 echo "please add the following line to your ~/.bash_profile (or ~/.zprofile):"
 echo "source $INSTALL_PREFIX/share/triqs/triqsvars.sh"
@@ -90,10 +92,3 @@ cmake ../forkTPS.src -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX -DCMAKE_LD_FLAGS=-L/
 make -j$NCORES && make test && make install
 cd ../
 ```
-
-
-
-
-
-
-

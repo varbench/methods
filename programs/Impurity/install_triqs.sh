@@ -8,7 +8,7 @@ INSTALL_PREFIX=$(pwd)/install
 NCORES=16
 
 # Clone the git repository of triqs
-git clone -b 3.1.x https://github.com/TRIQS/triqs triqs.src
+git clone -b 3.1.1 https://github.com/TRIQS/triqs triqs.src
 # Use cmake to configure the triqs build process
 mkdir -p triqs.build && cd triqs.build
 cmake ../triqs.src -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX
@@ -20,7 +20,7 @@ cd ../
 # Load the triqs installation into your environment
 source $INSTALL_PREFIX/share/triqs/triqsvars.sh
 
-echo 
+echo
 echo "If you want to automatically load triqs into your environment,"
 echo "please add the following line to your ~/.bash_profile (or ~/.zprofile):"
 echo "source $INSTALL_PREFIX/share/triqs/triqsvars.sh"
