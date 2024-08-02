@@ -6,7 +6,7 @@ For detailed information on forkTPS, please refer to [Daniel's paper](https://jo
 
 ## Dependencies
 
-This library depends on:
+This [forkTPS](https://github.com/TRIQS/forktps)(private yet, please contact @xiaodongcao for permission) library depends on:
 1. [TRIQS](https://triqs.github.io/triqs/latest/install.html) for DMFT-related calculations
 2. [ITensor (C++ version)](https://itensor.org/) as the backbone for tensor operations
 
