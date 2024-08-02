@@ -38,6 +38,7 @@ parser.add_argument('--Nconvergence', type = int, default=0)
 parser.add_argument('--numsamples', type = int, default=100)
 # #To fine tune the model
 parser.add_argument('--lrthreshold_conv', type = float, default=1e-4)
+parser.add_argument('--learning_rate_fixed', type = str2bool, default=False)
 
 args = parser.parse_args()
 
@@ -295,6 +296,8 @@ with tf.compat.v1.variable_scope(wf.scope,reuse=tf.compat.v1.AUTO_REUSE):
                     lr_adap = max(lrthreshold, lr/(1+it/lrdecaytime))
                 elif it+1>Nwarmup+Nannealing*Ntrain: #After annealing -> finetuning the model during convergence
                     lr_adap = lrthreshold_conv/(1+(it-(Nwarmup+Nannealing*Ntrain))/lrdecaytime_conv)
+                    if args.learning_rate_fixed:
+                        lr_adap = lrthreshold_conv
 
                 samples, local_energies = Get_Samples_and_Elocs(J2, Nx, Ny, samples, sigmas, H, log_amplitudes, sigmaH, matrixelements, samples_tensor, inputs, log_amps, sess, RNN_symmetry)
 
