@@ -6,4 +6,4 @@ The folder `programs/` contains collections of programs, and `scripts/` contains
 
 The script is assumed to run on a common Linux distribution, from the root directory of this repository, and outputs energy, sigma, and energy variance of the data row. It should set up a virtual environment with specific versions of all dependencies, and contain the random seed if needed. Alternatively, you may provide instructions on compiling and setting up the virtual environment in the program folder.
 
-Note that everything in this repository will be published under the Apache-2.0 license and archived on Zenodo.
+Note that everything in this repository will be published under the Apache-2.0 license unless otherwise stated, and archived on Zenodo.
