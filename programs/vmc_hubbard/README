@@ -8,3 +8,6 @@ Code short description:
 -) Parameters.f: Computes the optimal variational parameters after the Monte Carlo optimization run.
 -) Energy.f90: Computes the energy and the energy squared after the Monte Carlo run.
 -) Variance.f: Computes the variance, given the energy and the energy squared.
+
+Bash scripts to reproduce results in the dataset are collected in the "scripts" folder, together with the input files containing the optimal variational parameters.
+Run compile.sh to compile codes. This requires Fortran and C compilers (assuming GNU compilers here) + LAPACK and BLAS libraries.
