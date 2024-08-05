@@ -12,7 +12,7 @@ cd -
 
 #Read data
 
-echo "30 1000 5 0" | ../../../../programs/vmc_hubbard/Energy.x  #energy (<H>/N) + error
+echo "30 500 2 0" | ../../../../programs/vmc_hubbard/Energy.x  #energy (<H>/N) + error
 echo "<H>/N: $(tail -n 1 fort.30)"
 
 #Note: statistical errors can be reduced by performing more MC steps
