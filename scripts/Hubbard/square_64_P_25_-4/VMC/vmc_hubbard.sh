@@ -7,8 +7,8 @@ chmod +x compile.sh
 cd -
 
 #Run VMC
-../../../../programs/vmc_hubbard/Prep_stripes.x < datprep.d > prep.out
-../../../../programs/vmc_hubbard/Main_stripes.x < datasvmc.d > VMC.out
+../../../../programs/vmc_hubbard/Prep_uniform_wf.x < datprep.d > prep.out
+../../../../programs/vmc_hubbard/Main_uniform_wf.x < datasvmc.d > VMC.out
 
 #Read data
 echo "0 1000 5 1" | ../../../../programs/vmc_hubbard/Energy.x  #energy**2 (<H**2>/N**2) + error
