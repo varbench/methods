@@ -387,7 +387,7 @@ with tf.compat.v1.variable_scope(wf.scope,reuse=tf.compat.v1.AUTO_REUSE):
 
 
         np.savetxt(backgroundpath + '/Energies_2DTGCRNN_'+str(Nx)+'x'+ str(Ny) + '_lradap'+str(lr)+'_samp'+str(numsamples)+ending + savename +'_Nsteps'+str(numsteps)+'.txt', local_energies2)
-        np.savetxt(backgroundpath + '/FinalEnergy_2DTGCRNN_'+str(Nx)+'x'+ str(Ny) + '_lradap'+str(lr)+'_samp'+str(numsamples)+ending + savename +'_Nsteps'+str(numsteps)+'.txt', data_to_store)
+        np.savetxt(backgroundpath + '/FinalEnergy_2DTGCRNN_'+str(Nx)+'x'+ str(Ny) + '_lradap'+str(lr)+'_samp'+str(numsamples)+ending + savename +'_Nsteps'+str(numsteps)+'.txt', [meanE_final, errE_final])
 
 ########################## Plotting some useful figures ##############################
 import matplotlib.pyplot as plt

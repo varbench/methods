@@ -1,6 +1,6 @@
 VMC and ED implemented using [NetKet](https://github.com/netket/netket).
 
-`requirements.txt` contains a simple set of dependencies to reproduce the results. It does not include CUDA, and it is enough for quick experiments on small lattices. Create a virtual environment and use `pip install -r requirements.txt` to install them.
+The code requires Python 3.10.4 . `requirements.txt` contains a simple set of dependencies to reproduce the results. It does not include CUDA, and it is enough for quick experiments on small lattices. Create a virtual environment and use `pip install -r requirements.txt` to install them.
 
 `vmc.py` runs the VMC with simple ansatzes such as Jastrow, RBM, and RNN, which are used as baselines in the VarBench dataset.
 

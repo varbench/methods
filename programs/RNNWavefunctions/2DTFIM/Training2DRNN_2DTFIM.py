@@ -96,11 +96,11 @@ def run_2DTFIM(numsteps = 2*10**4, systemsize_x = 5, systemsize_y = 5, Bx = +2, 
     # Intitializing the RNN-----------
     units=[num_units] #list containing the number of hidden units for each layer of the networks (We only support one layer for the moment)
 
-    Jz = +np.ones((Nx,Ny)) #Ferromagnetic couplings
-    lr=np.float64(learningrate)
-
     Nx=systemsize_x #x dim
     Ny=systemsize_y #y dim
+
+    Jz = +np.ones((Nx,Ny)) #Ferromagnetic couplings
+    lr=np.float64(learningrate)
 
     input_dim=2 #Dimension of the Hilbert space for each site (here = 2, up or down)
     numsamples_=20 #number of samples only for initialization
@@ -243,8 +243,8 @@ def run_2DTFIM(numsteps = 2*10**4, systemsize_x = 5, systemsize_y = 5, Bx = +2, 
             samples2 = np.ones((numsamples_estimation, Nx, Ny), dtype=np.int32)
 
             local_energies2 = np.zeros(numsamples_estimation, dtype = np.complex128) #The type complex should be specified, otherwise the imaginary part will be discarded
-            queue_samples2=np.zeros(((Nx*Ny+1)*numbatches, Nx, Ny), dtype=np.int32)
-            log_probs2 = np.zeros((Nx*Ny+1)*numbatches, dtype=np.complex128)
+            queue_samples2=np.zeros(((Nx*Ny+1), numbatches, Nx, Ny), dtype=np.int32)
+            log_probs2 = np.zeros((Nx*Ny+1)*numbatches, dtype=np.float64)
 
             print("sampling Started")
             start_sampling = time.time()
@@ -253,11 +253,12 @@ def run_2DTFIM(numsteps = 2*10**4, systemsize_x = 5, systemsize_y = 5, Bx = +2, 
                 samples2[i*numbatches:(i+1)*numbatches]=sess.run(samples2_tensor)
                 print("Sampling progress =", (i+1)/(numsamples_estimation//numbatches))
                 print("Getting local energies started:")
-                local_energies2[i*numbatches:(i+1)*numbatches] = Ising2D_local_energies(Jz, Bx, Nx, Ny, samples2[i*numbatches:(i+1)*numbatches], queue_samples, log_probs_tensor, samples_placeholder, log_probs2, sess)
+                local_energies2[i*numbatches:(i+1)*numbatches] = Ising2D_local_energies(Jz, Bx, Nx, Ny, samples2[i*numbatches:(i+1)*numbatches], queue_samples2, log_probs_tensor, samples_placeholder, log_probs2, sess)
                 print("Local energies computation ended!")
 
                 print("sampling ended: "+ str(time.time() - start_sampling))
 
+            N = Nx * Ny
             meanE_final = np.mean(local_energies2)/N
             errE_final = np.sqrt(np.var(local_energies2)/numsamples_estimation)/N
 

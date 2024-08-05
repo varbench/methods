@@ -293,6 +293,11 @@ class RNNwavefunction(object):
             group_cardinal = len(list_samples)
             numsamples = tf.shape(list_samples[0])[0]
             numgpus = get_numavailable_gpus()
+            if numgpus == 0:
+                numgpus = 1
+                devices = [tf.device('/CPU:0')]
+            else:
+                devices = [tf.device("/GPU:"+str(i)) for i in range(numgpus)]
 
             list_probs = [[] for i in range(numgpus)]
             list_phases = [[] for i in range(numgpus)]
@@ -301,8 +306,8 @@ class RNNwavefunction(object):
             numsamplespergpu = tf.shape(list_samples)[0]//numgpus #We assume that is divisible!
 
 
-        for i in range(numgpus):
-            with tf.device("/GPU:"+str(i)):
+        for i, device in enumerate(devices):
+            with device:
                 log_prob_temp, log_phase_temp = self.log_amplitude_nosymmetry(list_samples[i*numsamplespergpu:(i+1)*numsamplespergpu],inputdim)
                 list_probs[i] = tf.exp(log_prob_temp)
                 list_phases[i] = tf.complex(tf.cos(log_phase_temp), tf.sin(log_phase_temp))
