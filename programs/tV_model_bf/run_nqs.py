@@ -34,7 +34,7 @@ from hamiltonian import t_v_model
 #from models import MeanBackflowSlater
 from symm_models import SymmRBM, SymmMeanBackflowSlater
 from symmetries import _character
-
+from models import MeanBackflowSlater
 
 nk.config.netket_experimental_fft_autocorrelation = True
 
@@ -48,7 +48,7 @@ parser.add_argument("--L", type=int, help="Lattice size", required=True)
 parser.add_argument("--Nf", type=int, help="Number of fermions", required=True)
 parser.add_argument("--V", type=float, help="Coulomb interaction", required=True)
 parser.add_argument("--j", type=int, help="Jastrow", required=True)
-#parser.add_argument("--symm", type=int, help="Symmetries", default=True)
+parser.add_argument("--symm", type=int, help="Symmetries", default=True)
 
 
 #if parser.parse_known_args()[0].J:
@@ -153,14 +153,14 @@ def run_ansatz(i):
 
 
     # define the model
-    #if args.symm == 0:
+    if args.symm == 0:
         #print('no sym')
         #---- without lattice symmetries ----
-        #ma = MeanBackflowSlater(L=args.L, D=D, Nf=args.Nf, Ns=Ns, mf_orbitals=True, backflow=args.bf, jastrow=args.J)
+        ma = MeanBackflowSlater(L=args.L, D=D, Nf=args.Nf, Ns=Ns, mf_orbitals=True, backflow=args.bf, jastrow=args.j)
 
-    #elif args.symm:
+    elif args.symm:
     #---- with lattice symmetries ----
-    ma = SymmMeanBackflowSlater(L=args.L,D=D, Nf=args.Nf, Ns=Ns, symmetries = symm, character=character, graph=g,
+        ma = SymmMeanBackflowSlater(L=args.L,D=D, Nf=args.Nf, Ns=Ns, symmetries = symm, character=character, graph=g,
                                 backflow=args.bf, mf_orbitals=True, jastrow=args.j, depth=args.depth, features = args.feat)
 
     # variational state
