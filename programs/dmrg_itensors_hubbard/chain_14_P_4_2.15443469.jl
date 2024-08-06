@@ -91,7 +91,6 @@ function lattice_hubbard_MPO(edges,sites,order,t,U)
     return H
 end
 
-
 let
     #------------------------
     #Hubbard chain
@@ -113,32 +112,8 @@ let
     sweeps = Sweeps(length(dims))
     setmaxdim!(sweeps,dims...)
     E,ψ  = dmrg(H,ψ,sweeps)
+    @show E
 
-
-    #=
-    #------------------------
-    #Hubbard square lattice
-    #------------------------
-
-    U = 6
-    nx = 4
-    ny = 2
-    N = nx*ny
-    yperiodic = false
-
-    site_type = "Electron"
-    sites = siteinds(site_type,N;conserve_qns=true)
-    ψ = productMPS(sites,n -> isodd(n) ? "Up" : "Dn")
-
-    order = snake_order(nx,ny)
-    edges = square_edges(order,yperiodic)
-    H = lattice_hubbard_MPO(edges,sites,order,1,U)
-
-    dims = [10,20,40,80,120,160,200]
-    sweeps = Sweeps(length(dims))
-    setmaxdim!(sweeps,dims...)
-
-    E,psi = dmrg(H,ψ,sweeps)
-    =#
-
+    var = inner(H,ψ,H,ψ) - E^2
+    @show var
 end

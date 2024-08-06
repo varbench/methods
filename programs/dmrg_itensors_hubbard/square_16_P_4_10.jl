@@ -28,7 +28,7 @@ function chain_edges(N,periodic)
     return edges
 end
 
-function square_edges(order,yperiodic)
+function square_edges(order,xperiodic,yperiodic)
     nx = size(order)[1]
     ny = size(order)[2]
     edges = []
@@ -39,13 +39,17 @@ function square_edges(order,yperiodic)
                     edge1 = [order[i+istep,j+jstep],order[i,j]]
                     edge2 = [order[i,j],order[i+istep,j+jstep]]
                     !(edge1 in edges) && insert!(edges,1,edge2)
-
                 catch
                 end
             end
         end
     end
-
+    if xperiodic
+        for i in 1:ny
+            edge = [order[1,i],order[nx,i]]
+            insert!(edges,1,edge)
+        end
+    end
     if yperiodic
         for j in 1:nx
             edge = [order[j,1],order[j,ny]]
@@ -92,28 +96,38 @@ function lattice_hubbard_MPO(edges,sites,order,t,U)
 end
 
 let
-    #------------------------
-    #Hubbard chain
-    #------------------------
-
-    N = 14
-    periodic = true
     U = 10
+    nx = 4
+    ny = 4
+    N = nx*ny
+    yperiodic = true
+    xperiodic = true
 
     site_type = "Electron"
     sites = siteinds(site_type,N;conserve_qns=true)
 
-    spins = ["Emp","Emp","Up","Dn","Up","Dn","Emp","Emp","Up","Dn","Up","Dn","Emp","Emp"]
+    spins = [isodd(i) ? "Up" : "Dn" for i in 1:N]
+
+    for i in [i for i in 5:12]
+        spins[i] = "Emp"
+    end
+    @show count(i->i=="Up",spins)
+
     ψ = productMPS(sites,spins)
 
-    edges = chain_edges(N,periodic)
-    H = chain_hubbard_MPO(edges,sites,N,1,U)
-    dims = [4,8,16,32,64,128,200,300,500,700,1000,1550]
-    sweeps = Sweeps(length(dims))
-    setmaxdim!(sweeps,dims...)
-    E,ψ  = dmrg(H,ψ,sweeps)
-    @show E
+    order = snake_order(nx,ny)
+    edges = square_edges(order,xperiodic,yperiodic)
+    H = lattice_hubbard_MPO(edges,sites,order,1,U)
 
-    var = inner(H,ψ,H,ψ) - E^2
-    @show var
+    dims = [4,8,16,32,64,128,256,500,800,1200,1700,2400,3200]
+    for dim in dims
+        sweeps = Sweeps(2)
+        setmaxdim!(sweeps,dim)
+
+        E,ψ = dmrg(H,ψ,sweeps)
+        @show E
+
+        var = inner(H,ψ,H,ψ) - E^2
+        @show var
+    end
 end

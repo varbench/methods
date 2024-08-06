@@ -91,7 +91,6 @@ function lattice_hubbard_MPO(edges,sites,order,t,U)
     return H
 end
 
-
 let
     U = 2
     nx = 8
@@ -101,7 +100,6 @@ let
 
     site_type = "Electron"
     sites = siteinds(site_type,N;conserve_qns=true)
-
 
     spins = [isodd(i) ? "Up" : "Dn" for i in 1:N]
 
@@ -121,5 +119,8 @@ let
     setmaxdim!(sweeps,dims...)
 
     E,psi = dmrg(H,ψ,sweeps)
+    @show E
 
+    var = inner(H,ψ,H,ψ) - E^2
+    @show var
 end

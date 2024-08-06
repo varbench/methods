@@ -92,28 +92,32 @@ function lattice_hubbard_MPO(edges,sites,order,t,U)
 end
 
 let
-    #------------------------
-    #Hubbard chain
-    #------------------------
-
-    N = 14
-    periodic = true
-    U = 10
+    U = 8
+    nx = 8
+    ny = 8
+    N = nx*ny
+    yperiodic = true
 
     site_type = "Electron"
     sites = siteinds(site_type,N;conserve_qns=true)
 
-    spins = ["Emp","Emp","Up","Dn","Up","Dn","Emp","Emp","Up","Dn","Up","Dn","Emp","Emp"]
+    spins = [isodd(i) ? "Up" : "Dn" for i in 1:N]
+
     ψ = productMPS(sites,spins)
 
-    edges = chain_edges(N,periodic)
-    H = chain_hubbard_MPO(edges,sites,N,1,U)
-    dims = [4,8,16,32,64,128,200,300,500,700,1000,1550]
-    sweeps = Sweeps(length(dims))
-    setmaxdim!(sweeps,dims...)
-    E,ψ  = dmrg(H,ψ,sweeps)
-    @show E
+    order = snake_order(nx,ny)
+    edges = square_edges(order,yperiodic)
+    H = lattice_hubbard_MPO(edges,sites,order,1,U)
 
-    var = inner(H,ψ,H,ψ) - E^2
-    @show var
+    dims = [4,8,16,32,64,128,256,500,800,1300,2000,3000,4000,5000,6000,7000,8000,9000,10000]
+    for dim in dims
+        sweeps = Sweeps(2)
+        setmaxdim!(sweeps,dim)
+
+        E,ψ = dmrg(H,ψ,sweeps)
+        @show E
+
+        var = inner(H,ψ,H,ψ) - E^2
+        @show var
+    end
 end
