@@ -64,6 +64,3 @@ E,V = eigsh(H.aslinearoperator(),k=1,which="SA")
 
 print(list(E))
 print(len(list(E)))
-
-
-

@@ -30,12 +30,12 @@ default_kernel_init = lecun_normal()
 default_bias_init = zeros
 
 
-### Symmetrize: we want phi =  log sum_g exp(chi_g * det(gx) * symmRBM(gx)) 
+### Symmetrize: we want phi =  log sum_g exp(chi_g * det(gx) * symmRBM(gx))
 # --> we need to define the determinants, a jastrow rbm and the corresponding symm characters
- 
+
 ############ IMPORTANT: we re-define DenseSymm-layer which we use for the symmetric RBM, because we want to apply
 #  the symm action g on the input x instead of the kernel, just to be consistent with how we
-#  defined the symmetry transformation on the determinant: phi =  log sum_g exp(chi_g * det(gx) * symmRBM(gx)) 
+#  defined the symmetry transformation on the determinant: phi =  log sum_g exp(chi_g * det(gx) * symmRBM(gx))
 # check in DenseSymmMatrix() below: x = jnp.take(x,jnp.asarray(self.symmetries), 2) and x = jnp.einsum('ijkl,mjl->imk',x,kernel)
 
 
@@ -54,7 +54,7 @@ class DenseSymmLayer(nn.Module):
     """The number of output features. Will be the second dimension of the output."""
     use_bias: bool = True
     """Whether to add a bias to the output (default: True)."""
-    
+
     param_dtype: Any = jnp.complex128
     """The dtype of the weights."""
     kernel_init: NNInitFunc = default_kernel_init
@@ -75,7 +75,7 @@ class DenseSymmLayer(nn.Module):
         Returns:
           The transformed input.
         """
-   
+
         # if x.ndim < 3, 'error'
         # TODO: Deprecated: Eventually remove and error if less than 3 dimensions
         if x.ndim < 3:
@@ -85,32 +85,32 @@ class DenseSymmLayer(nn.Module):
             elif x.ndim == 2:
                 x = jnp.expand_dims(x, 1)
             #symm_input_warning(old_shape, x.shape, "DenseSymm")
-        
+
         in_features = x.shape[1]
-        
+
         if self.use_bias:
             bias = self.param(
                 "bias", self.bias_init, (self.features,), self.param_dtype)
         else:
             bias = None
-        
+
 
         kernel = self.param("kernel",self.kernel_init,(self.features, in_features, self.n_sites),self.param_dtype,)
 
 
 	    # apply symmetries to the input x instead of the kernel
-        x = jnp.take(x,jnp.asarray(self.symm), 2)           
+        x = jnp.take(x,jnp.asarray(self.symm), 2)
         x = jnp.einsum('ijkl,mjl->imk',x,kernel) # outputs [batch, alpha, input features]
-        
-        
+
+
         if self.use_bias:
             # Convert symmetry-reduced bias of shape (features,) to the full bias of shape (..., features, 1).
             bias = jnp.expand_dims(bias, 1)
-            
-            
+
+
             x += bias
-            
-        
+
+
 
         return x
 
@@ -126,10 +126,10 @@ class SymmRBM(nn.Module):
         Numpy/Jax arrays must be wrapped into an :class:`netket.utils.HashableArray`. """
     alpha: int = 1
     """The features density. Number of features equal to alpha * input.shape[-1]."""
-        
+
     use_bias: bool = True
     """Whether to add a bias to the output (default: True)."""
-    
+
     param_dtype: Any = jnp.complex128
     """The dtype of the weights."""
 
@@ -147,15 +147,15 @@ class SymmRBM(nn.Module):
 
     @nn.compact
     def __call__(self, n):
-        
+
         # dense symmetric layer
         x = DenseSymmLayer(symmetries=self.symmetries, features=self.features*5, use_bias=self.use_bias, param_dtype=self.param_dtype,
         kernel_init=self.kernel_init, bias_init=default_bias_init)(n)
-        
+
         # activation function
         x = self.activation(x)
         # summ along features axis and symm axis
-        x = jnp.sum(x, axis=(-1,-2))        
+        x = jnp.sum(x, axis=(-1,-2))
         return x
 
 
@@ -163,7 +163,7 @@ class SymmRBM(nn.Module):
 class GroupConvBackflow(nn.Module):
     out_dim: int
     hidden_layers: Tuple[int]
-    
+
     Nf: int
     L: int
     symmetries: Union[HashableArray, PermutationGroup]
@@ -172,8 +172,8 @@ class GroupConvBackflow(nn.Module):
     # last_linear: bool = True
     param_dtype: Any = complex
     alpha: int = 1
-    
-        
+
+
     def setup(self):
 
         self.n_symm, self.n_sites = np.asarray(self.symmetries).shape
@@ -182,9 +182,9 @@ class GroupConvBackflow(nn.Module):
 
     @nn.compact
     def __call__(self, n):
-       
-        x = DenseSymmLayer(symmetries=self.symmetries, features=self.features, use_bias=False, param_dtype=jnp.complex128,)(n) 
-         
+
+        x = DenseSymmLayer(symmetries=self.symmetries, features=self.features, use_bias=False, param_dtype=jnp.complex128,)(n)
+
         x = nk.nn.reim_relu(x)
 
         return x
@@ -194,7 +194,7 @@ class GroupConvBackflow(nn.Module):
 
 
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
 
@@ -244,7 +244,7 @@ class ConvFastCircular(nn.Module):
                             f' {self.kernel_size}.')
         else:
             kernel_size = tuple(self.kernel_size)
-            
+
         # Combine all input batch dimensions into a single leading batch axis.
         num_batch_dimensions = inputs.ndim - (len(kernel_size) + 1)
         input_batch_shape = inputs.shape[:num_batch_dimensions]
@@ -252,12 +252,12 @@ class ConvFastCircular(nn.Module):
         grid_shape = inputs.shape[num_batch_dimensions:-1]
 
 
-        
+
         kernel_size_arr = np.array(kernel_size)
-        
+
         #assert np.all(kernel_size_arr // 2 == 1), "kernels must be odd"
         max_shifts = (kernel_size_arr-1) // 2
-        shifts = np.meshgrid(*[np.arange(-m, m+1) for m in max_shifts])   
+        shifts = np.meshgrid(*[np.arange(-m, m+1) for m in max_shifts])
         shifts = list(map(np.ravel, shifts))
 
         n_shifts = shifts[0].shape[0]
@@ -270,7 +270,7 @@ class ConvFastCircular(nn.Module):
         shifted_input = shifted_input.reshape(*input_batch_shape, *grid_shape, n_shifts*input_features)
 
         # change last dimension only
-        out = nn.Dense(self.features, use_bias=self.use_bias, dtype=self.dtype, param_dtype=self.param_dtype, 
+        out = nn.Dense(self.features, use_bias=self.use_bias, dtype=self.dtype, param_dtype=self.param_dtype,
         kernel_init=self.kernel_init, bias_init=self.bias_init)(shifted_input)
 
         return out
@@ -285,7 +285,7 @@ def reshape_rotate(x, L):
 
 
 def rotate(x, L):
-    
+
     #x = jnp.flip(x, 0)
     x = jnp.rot90(x, k=2)
     return x
@@ -319,16 +319,16 @@ class ConvBackflow(nn.Module):
 
     use_bias: bool = True
     """Whether to add a bias to the output (default: True)."""
-    
+
     kernel_init: NNInitFunc = default_kernel_init
     """Initializer for the kernel. Defaults to Lecun normal."""
     bias_init: NNInitFunc = default_bias_init
     """Initializer for the bias. Defaults to zero initialization."""
-        
+
     def setup(self):
         layers = []
         for i in range(self.depth):
-            layers.append(ConvFastCircular(features=self.features, kernel_size=self.kernel_size, use_bias=self.use_bias, dtype=self.dtype, 
+            layers.append(ConvFastCircular(features=self.features, kernel_size=self.kernel_size, use_bias=self.use_bias, dtype=self.dtype,
             param_dtype=self.param_dtype, kernel_init=self.kernel_init, bias_init=self.bias_init))
             #layers.append(nn.Conv(features=self.features, kernel_size=(3, 3), strides=(1, 1), padding="CIRCULAR", param_dtype = jnp.complex128))
         self.layers = layers
@@ -344,7 +344,7 @@ class ConvBackflow(nn.Module):
         x = n
 
         residual = x.copy()
-        
+
         if self.depth == 1:
             for i, layer in enumerate(self.layers):
                 x = layer(x)
@@ -352,22 +352,22 @@ class ConvBackflow(nn.Module):
 
         else:
             for i, layer in enumerate(self.layers):
-            
+
                 if i:
                     x = self.layernorm(x)
                     x = self.activation(x)
-                
+
                 x = layer(x)
                 if i % 2:
                     x += residual
                     residual = x.copy()
-        
+
 
         x = ConvFastCircular(self.Ns, (1,1),param_dtype = jnp.complex128)(x)
         #x  =nn.Conv(features=1, kernel_size=(1, 1), strides=(1, 1), padding="CIRCULAR",param_dtype = jnp.complex128)(x)
-        
+
         x = x.reshape(x.shape[0],self.L,self.L, self.Ns)
-        
+
         x = x.reshape(x.shape[0],self.L*self.L, self.Ns)
 
         t = np.asarray(self.symmetries)[:,0]
@@ -380,19 +380,19 @@ class ConvBackflow(nn.Module):
 ##### Wavefunction ansatz: symmetric Slater Backflow Jastrow #####
 ##### Symmetric dense neural network (g-CNN) #####
 class DenseSymmBackflow(nn.Module):
-    out_dim: int    
+    out_dim: int
     symmetries: Union[HashableArray, PermutationGroup]
     activation: Callable = nk.nn.reim_relu
     param_dtype: Any = complex
     alpha: int = 1
-    
+
     kernel_init: NNInitFunc = default_kernel_init
     """Initializer for the kernel. Defaults to Lecun normal."""
     bias_init: NNInitFunc = zeros
     """Initializer for the bias. Defaults to zero initialization."""
 
-    
-        
+
+
     def setup(self):
 
         self.n_symm, self.n_sites = np.asarray(self.symmetries).shape
@@ -401,24 +401,24 @@ class DenseSymmBackflow(nn.Module):
 
     @nn.compact
     def __call__(self, n):
-        
-        x = nk.nn.DenseSymm(symmetries=self.symmetries, features=self.features, use_bias=True, 
-                            param_dtype=self.param_dtype,kernel_init=self.kernel_init)(n) 
-         
+
+        x = nk.nn.DenseSymm(symmetries=self.symmetries, features=self.features, use_bias=True,
+                            param_dtype=self.param_dtype,kernel_init=self.kernel_init)(n)
+
         x = self.activation(x)
-        
+
         x = nk.nn.DenseEquivariant(symmetries=self.symmetries, mode = "auto",features=self.features,
                                    use_bias=True, param_dtype=jnp.complex128,)(x)
-        x = nk.nn.DenseEquivariant(symmetries=self.symmetries, mode = "auto",features=self.out_dim, 
+        x = nk.nn.DenseEquivariant(symmetries=self.symmetries, mode = "auto",features=self.out_dim,
                                    use_bias=True, param_dtype=jnp.complex128,)(x)
-        
+
         x = logsumexp_cplx(x, axis=(-1))
         return x
 
 
 class JastrowTranslationInv(nn.Module):
     "Two-body Jastrow factor that is invariant under translations."
-    
+
     r'''
     \displaystyle\log \psi(z) = 1/2 \sum_{ij} z_i W_{d(ij)} z_j
     '''
@@ -433,14 +433,14 @@ class JastrowTranslationInv(nn.Module):
 
     jastrow_init : NNInitFunc = nn.initializers.normal() #nn.initializers.constant(np.array([1,2,3,4]))
     """Initializer for the jastrow parameters."""
-    
+
     @nn.compact
     def __call__(self, n):
 
         # Jastrow variational parameters to be optimized
         J = self.param('J', self.jastrow_init, (self.n_neigh,), self.param_dtype)
-        
-        
+
+
         # Nearest-neighbor correlations
         corr = 0.5*jnp.einsum( '...i,ij,...j',n,J[self.graph.distances()],n )
 
@@ -478,7 +478,7 @@ class SymmMeanBackflowSlater(nn.Module):
     """Bool indicating whether to use a SymmRBM jastrow term. If False, we use a two-body translation invariant Jastrow term. """
 
 
-    
+
     backflow: bool = True
     """Bool indicating whether to use a (CNN) backflow correction function. """
 
@@ -512,7 +512,7 @@ class SymmMeanBackflowSlater(nn.Module):
     """The nonlinear activation function between layers."""
 
 
-    
+
     dtype: Optional[DType] = None
     """The dtype of the computation."""
     param_dtype: Any = jnp.complex128
@@ -523,16 +523,16 @@ class SymmMeanBackflowSlater(nn.Module):
 
     def setup(self):
         self.n_symm, self.n_sites = np.asarray(self.symmetries).shape
-        
-    
-        
+
+
+
 
     @nn.compact
     def __call__(self, n):
-        
-        
+
+
         # get indices of where particles lie given configuration n
-        idx = jax.vmap(_where_idx, in_axes=(0, None))(n, self.Nf)  
+        idx = jax.vmap(_where_idx, in_axes=(0, None))(n, self.Nf)
 
         # apply symmetry transform into the indices
         symm_inv = np.asarray(self.symmetries)[self.symmetries.inverse] # we want g^{-1}^{-1} = g
@@ -542,7 +542,7 @@ class SymmMeanBackflowSlater(nn.Module):
         # Normalization of input: rescale the input to a signed binary notation of occupation number basis
         # centering the data around zero has shown to improve the NN performance
         n = (2*n-1)
-                
+
         if self.mf_orbitals == True:
             # Mean field wave function --> optimize orbitals
             phi_j = self.param("phi_mf", default_kernel_init, (self.Nf, self.Ns), jnp.complex128)  # var param matrix of size Nf * Nsites
@@ -550,10 +550,10 @@ class SymmMeanBackflowSlater(nn.Module):
 
         else:
             # Single particle orbitals
-            phi_j = _single_part(self.L, self.D, self.Nf) 
+            phi_j = _single_part(self.L, self.D, self.Nf)
             #print('phi_j plane waves', phi_j)
 
-        
+
         # CNN backflow
         if self.backflow == True:
             # construct CNN backflow, we want bf to be of dimension number of orbitals (in our case = number of fermions) N_orbitals * number of sites N_sites
@@ -562,10 +562,10 @@ class SymmMeanBackflowSlater(nn.Module):
             # create a list that contains N_orbitals times the CNN backflow model (function)
             #bf_mu = [DenseSymmBackflow(out_dim=self.Ns,  symmetries=self.symmetries, activation=self.activation, param_dtype=self.param_dtype,
             #kernel_init=self.kernel_init, bias_init=self.bias_init) for i in range(self.Nf)]
-            
+
 
             b = nn.vmap(ConvBackflow,in_axes=None, axis_size=self.Nf,    variable_axes={'params': 0},split_rngs={'params': True})
-            
+
             bf_out = b(L=self.L, Ns = self.Ns, Nf=self.Nf, symmetries=self.symmetries, activation=self.activation, depth=self.depth,
             features=self.features, dtype=self.dtype, param_dtype=self.param_dtype, kernel_size=self.kernel_size, use_bias=self.use_bias,
             kernel_init=self.kernel_init, bias_init=self.bias_init)(n)
@@ -583,27 +583,27 @@ class SymmMeanBackflowSlater(nn.Module):
             phi_ = phi_.transpose(0,2,1,3)
             # multiply mean field orbitals with backflow orbitals
             phi = phi_ * (1+bf)
-        
-            
-            
+
+
+
         else:
             # symmetrize phi_j wrt to self.symmetries
             # for each sample n take for each row in phi_j the Nf active indices (idx)
             phi = jax.vmap(_extract_cols, in_axes=(None, 0))(phi_j,jnp.asarray(idx_g))
             phi = phi.transpose(0,2,1,3)
-        
+
         # calculate (log) determinant of phi
         det = jax.vmap(_log_det)(phi.reshape(phi.shape[0], phi.shape[1],self.Nf, self.Nf))
-        
+
         # jastrow correlation function
         if self.jastrow == True:
             if self.jastrow_rbm == True:
                 # RBM jastrow consists of a dense symmetric layer
                 x = SymmRBM(symmetries=self.symmetries, alpha=self.alpha, use_bias=self.use_bias_rbm, param_dtype=self.param_dtype,
-                kernel_init = self.kernel_init_rbm, bias_init = self.bias_init_rbm, activation=self.activation_rbm)(n) 
+                kernel_init = self.kernel_init_rbm, bias_init = self.bias_init_rbm, activation=self.activation_rbm)(n)
             else:
                 x = JastrowTranslationInv(graph=self.graph,n_neigh=self.L)(n)
-            
+
             def add(a,b):
                 return a+b
             # add log slater determinant with log jastrow
@@ -611,10 +611,8 @@ class SymmMeanBackflowSlater(nn.Module):
         else:
             # no jastrow
             y = det
-        
+
         # since we symmetrized our ansatz we need to introduce the characters associated to each symmetry transformation
         # symmetrize the wavefunction by averaging over all the symmetry transformations with logsumexp
         res = logsumexp_cplx(jnp.array(y),axis=(1), b=jnp.asarray(self.character).conj())
         return res
-
-

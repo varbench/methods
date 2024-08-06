@@ -38,6 +38,6 @@ def t_v_model(L,D,t, U, Nf):
 
 
 def ED(ham):
-    #exact = jnp.linalg.eigvalsh(ham.to_dense())  
+    #exact = jnp.linalg.eigvalsh(ham.to_dense())
     exact = eigsh(ham.to_sparse(), k=2, which='SA')
     return exact

@@ -17,7 +17,8 @@ import os
 # detect MPI rank
 from mpi4py import MPI
 rank = MPI.COMM_WORLD.Get_rank()
-MPI4JAX_NO_WARN_JAX_VERSION=1
+
+os.environ["MPI4JAX_NO_WARN_JAX_VERSION"] = "1"
 
 # set only one visible device
 os.environ["CUDA_VISIBLE_DEVICES"] = f"{rank}"
@@ -27,8 +28,7 @@ os.environ["JAX_PLATFORM_NAME"] = "gpu"
 print('rank, jax.devices')
 print(f"{rank} -> {jax.devices()}")
 
-from jax.config import config
-config.update('jax_disable_jit', False)
+jax.config.update('jax_disable_jit', False)
 
 from hamiltonian import t_v_model
 #from models import MeanBackflowSlater
@@ -84,7 +84,7 @@ print("Jastrow:", bool(args.j))
     #print("Jastrow RBM:", bool(args.J_rbm))
 #if args.symm:
     #print("character:", args.charac)
-if args.bf: 
+if args.bf:
     print("backflow:", bool(args.bf))
     print("depth:", args.depth)
     print("features:", args.feat)
@@ -150,24 +150,24 @@ def run_ansatz(i):
 
     # choose sampler
     sa = nk.sampler.MetropolisExchange(hi, graph=g, n_chains=n_chains,n_sweeps=n_sweeps)
-    
+
 
     # define the model
     #if args.symm == 0:
         #print('no sym')
         #---- without lattice symmetries ----
         #ma = MeanBackflowSlater(L=args.L, D=D, Nf=args.Nf, Ns=Ns, mf_orbitals=True, backflow=args.bf, jastrow=args.J)
-    
+
     #elif args.symm:
     #---- with lattice symmetries ----
     ma = SymmMeanBackflowSlater(L=args.L,D=D, Nf=args.Nf, Ns=Ns, symmetries = symm, character=character, graph=g,
                                 backflow=args.bf, mf_orbitals=True, jastrow=args.j, depth=args.depth, features = args.feat)
-    
+
     # variational state
     vs = nk.vqs.MCState(sa, ma, n_samples=n_samples,chunk_size=chunk_size, n_discard_per_chain=2)#chunk_size=8)#n_discard_per_chain=100
     vs.init_parameters()
     print('acceptance', vs.sampler_state.n_accepted_proc, vs.sampler_state.acceptance)
-    
+
 
     print('number of params in the model', vs.n_parameters,)
     #np.savetxt(f"output/n_params.txt",[vs.n_parameters])
@@ -188,12 +188,12 @@ def run_ansatz(i):
     out_name = f"output/out_{i}"
     gs.run(n_iter=iterations, out=out_name, callback=acceptance_callback, )#obs={'Structure Factor': s})
 
-    
+
 
     # save variational state prams --> flax serialization
     with open(f"output/out_{i}_params.mpack", 'wb') as file:
         file.write(flax.serialization.to_bytes(vs.parameters))
-    
+
 
     return gs.state
 
@@ -201,7 +201,7 @@ def run_ansatz(i):
 def mean_en_var(ham, vs):
 
     print('check again ham', ham.max_conn_size)
-    
+
     n_samples = n_samples_v # n_samples needs to be divisble by chunk_size (and number of samples per rank)
 
     vs.n_samples = n_samples
@@ -211,17 +211,17 @@ def mean_en_var(ham, vs):
 
     variance = energy.variance.real
     #var_tot=s2_tot-en_tot**2
-    
+
     #s = sqrt(var_tot / float(n_samples))
     standard = energy.error_of_mean
     #s2_tot = energy.variance.real + energy.mean.real ** 2.
-    
+
     print('Energy, sigma, var')
     print(energy_mean, standard, variance)
 
 
-    
-    
+
+
 
 
     ####### k values (1D) ######
@@ -232,8 +232,8 @@ def mean_en_var(ham, vs):
     K = k_vector(L)
     print('Ks', np.array(K))
 
-    
-    ##############################################   
+
+    ##############################################
     ###### density-density correlation function ######
     print()
     C_r = []
@@ -251,7 +251,7 @@ def mean_en_var(ham, vs):
     print('numpy fft C_k', np.fft.fft(C_r))
     print('np.fft C_k_renorm', np.fft.fft(C_r)-C_r[0])
 
-    ##############################################   
+    ##############################################
     ###### structure factor ######
     C_k = []
     for i in range(len(K)):
@@ -261,7 +261,7 @@ def mean_en_var(ham, vs):
     print('C_k tilde', np.array(C_k))
     print('C_k tilde_renorm', np.array(C_k)-C_r[0])
 
-    ##############################################   
+    ##############################################
     ###### structure factor ######
     print()
     S_k = []
@@ -272,7 +272,7 @@ def mean_en_var(ham, vs):
         S_k.append(s.mean)
     print('structure factor', np.array(S_k))
     print('sf_renorm', np.array(S_k)-C_r[0])
-    
+
     return energy_mean, standard, variance
 
 
@@ -330,7 +330,7 @@ def distances_rij(r, box_size=None):
                 diff = diff - np.round(diff / box_size) * box_size
 
             distances[i, j] = diff
-                        
+
     return distances
 
 

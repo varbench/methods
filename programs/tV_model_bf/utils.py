@@ -25,9 +25,9 @@ def k_vector(L):
     kx = jnp.insert(kx,0,0)
     k = jnp.array([(i,j) for i in kx for j in kx]) # coordinates of the orbitals in k-space
     k = sort_k(k)
-    
+
     return k
-    
+
 ### PBC
 def _lattice_coord(L,D,Nf): # defines the lattice coordinates of the sites in real and k-space
     r = jnp.array([(i,j) for i in range(L) for j in range(L)]) # coordinates of the lattice sites in real space
@@ -37,7 +37,7 @@ def _lattice_coord(L,D,Nf): # defines the lattice coordinates of the sites in re
 
 
 
-def _single_part(L,D,Nf): # return single part orbitals 
+def _single_part(L,D,Nf): # return single part orbitals
 
     coord = _lattice_coord(L,D,Nf)
     r = coord[0] # coordinates of the lattice sites in real space
@@ -65,16 +65,16 @@ def get_max_conn(op, verbose=True, change=True, safety_factor=1.5):#safety_facto
     hi = op.hilbert
     _, mels = op.get_conn_padded(hi.random_state(key=jax.random.PRNGKey(0), size=(64*1024)))
     mels = mels.reshape(-1, mels.shape[-1])
-    
+
     n_conn = (1-np.isclose(mels, 0)).sum(axis=-1)
-    
+
     max_conn = np.max(n_conn)
-    
+
     if change:
         assert safety_factor >= 1
         op._max_conn_size = int(max_conn*safety_factor)
         op._max_conn_size
-        
+
     return op._max_conn_size
 
 
@@ -85,7 +85,7 @@ def distances_rij(r):
     for i in range(N_sites):
         for j in range(N_sites):
             distances[i, j] = r[i] - r[j]
-            
+
     return distances
 
 
@@ -96,4 +96,3 @@ def reorder_array(batch, t):
 def _extract(a,idx):
     a = a[idx]
     return a
-

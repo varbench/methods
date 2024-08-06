@@ -16,7 +16,7 @@ def _symm_transf(phi, symm):
     return phi_symm
 
 
-def _character(K,g): # character computed wrt momentum, K is the total momentum and g is the symmetry transformation vector, e.g. g = T_x, translation in x 
+def _character(K,g): # character computed wrt momentum, K is the total momentum and g is the symmetry transformation vector, e.g. g = T_x, translation in x
     return jnp.exp(-1j * jnp.sum(g*K, axis=1))
 
 
@@ -35,12 +35,12 @@ def _parity_factor(symm, idx):
     symm = jnp.asarray(symm)
     # active indices (indices of particle positions)
     idx = jnp.asarray(idx)
-    
+
     # permute the active indices with the symmetry operations symm
-    symm_extra = jax.vmap(jax.vmap(_extract, in_axes=(0,None)), in_axes=(None, 0))(symm, idx)  
+    symm_extra = jax.vmap(jax.vmap(_extract, in_axes=(0,None)), in_axes=(None, 0))(symm, idx)
 
     # parity factors
-    parities =  jax.vmap(jax.vmap(_parity))(symm_extra) 
+    parities =  jax.vmap(jax.vmap(_parity))(symm_extra)
 
     return parities
 
@@ -59,4 +59,3 @@ def reshape_rotate(x, L):
 
 def rotate(x, L):
     return jnp.rot90(x, k=2)#jnp.transpose(x)#k=2 works!
-
