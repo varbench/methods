@@ -15,8 +15,11 @@ import sys
 import os
 
 # detect MPI rank
-from mpi4py import MPI
-rank = MPI.COMM_WORLD.Get_rank()
+try:
+    from mpi4py import MPI
+    rank = MPI.COMM_WORLD.Get_rank()
+except ModuleNotFoundError:
+    rank = 0
 
 os.environ["MPI4JAX_NO_WARN_JAX_VERSION"] = "1"
 

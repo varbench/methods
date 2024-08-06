@@ -13,7 +13,7 @@ default_kernel_init = lecun_normal()
 default_bias_init = zeros
 
 class MeanBackflowSlater(nn.Module):
-    
+
     L: int
     """The size of the system lattice is L^D. """
     D: int
@@ -22,13 +22,13 @@ class MeanBackflowSlater(nn.Module):
     """The number of fermions on the discrete lattice. """
     Ns: int
     """The total number of sites on the lattice. """
-    
+
 
     mf_orbitals: bool = True
     """Bool indicating whether to use mean field orbitals or plane waves. Defaults to mean field orbitals --> optimized matrix. """
     jastrow: bool = True
     """Bool indicating whether to use a (RBM) jastrow term which introduces correlations to our ansatz. """
-    
+
     backflow: bool = True
     """Bool indicating whether to use a (MLP) backflow correction function. """
 
@@ -61,7 +61,7 @@ class MeanBackflowSlater(nn.Module):
 
     activation: Callable = nk.nn.reim_relu
     """The nonlinear activation function between layers."""
-    
+
     #### RBM params
     activation_rbm: Callable = nk.nn.log_cosh
     """The nonlinear activation function between layers."""
@@ -72,16 +72,16 @@ class MeanBackflowSlater(nn.Module):
     """if True uses a bias in the dense layer (hidden layer bias)."""
     use_visible_bias_rbm: bool = True
     """if True adds a bias to the input not passed through the nonlinear layer."""
-    
+
     kernel_init_rbm: NNInitFunc = default_kernel_init
     """Initializer for the Dense layer matrix."""
     hidden_bias_init_rbm: NNInitFunc = default_bias_init
     """Initializer for the hidden bias."""
     visible_bias_init_rbm: NNInitFunc = default_bias_init
     """Initializer for the visible bias."""
-    
-    
-    
+
+
+
 
     # Backflow MLP architecture dim = = [# input nodes, # hidden layer nodes,...., # output nodes]
 
@@ -94,7 +94,7 @@ class MeanBackflowSlater(nn.Module):
     def __call__(self, n):
 
         idx = jax.vmap(_where_idx, in_axes=(0, None))(n, self.Nf)[0]  # get idx of where particles lie given configuration |n>
-        
+
         # Normalization of input: rescale the input to a signed binary notation of occupation number basis
         # centering the data around zero has shown to improve the NN performance
         n = (2*n-1)
@@ -105,14 +105,14 @@ class MeanBackflowSlater(nn.Module):
 
         else:
             # Single particle orbitals
-            phi_j = _single_part(self.L, self.D, self.Nf) 
+            phi_j = _single_part(self.L, self.D, self.Nf)
 
-            
+
         if self.backflow == True:
 
             #bf = nk.models.MLP(output_dim=self.Nf*self.Ns,hidden_dims=2, param_dtype=self.param_dtype,
             #precision= self.precision, hidden_activations=self.activation)(n)
-        
+
             #bf = jnp.expand_dims(bf, 0)
             #bf = bf.reshape(n.shape[0], self.Nf, self.Ns)
             bf = nn.Dense(2, param_dtype=self.param_dtype)(n)
@@ -129,16 +129,16 @@ class MeanBackflowSlater(nn.Module):
             phi_bf = phi_j * bf
             phi = jax.vmap(_extract_cols, in_axes=(0, 0))(phi_bf,
                                                      idx)  # for each sample x take for each row in phi_param the Nf active indices (idx)
-        
+
         else:
             phi = jax.vmap(_extract_cols, in_axes=(None, 0))(phi_j, idx) # for each sample x take for each row in phi_param the Nf active indices (idx)
-        
-      
+
+
         det = jax.vmap(_log_det)(phi)  # calculate (log) determinant of phi
 
         if self.jastrow == True:
-            x = nk.models.RBM(alpha=self.alpha, precision=self.precision, use_hidden_bias=self.use_hidden_bias_rbm, 
-            use_visible_bias=self.use_visible_bias_rbm, param_dtype=self.param_dtype, activation = self.activation_rbm, 
+            x = nk.models.RBM(alpha=self.alpha, precision=self.precision, use_hidden_bias=self.use_hidden_bias_rbm,
+            use_visible_bias=self.use_visible_bias_rbm, param_dtype=self.param_dtype, activation = self.activation_rbm,
             kernel_init=self.kernel_init_rbm, hidden_bias_init=self.hidden_bias_init_rbm,
             visible_bias_init=self.visible_bias_init_rbm)(n)
             y = det + x
