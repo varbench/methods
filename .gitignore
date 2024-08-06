@@ -13,3 +13,10 @@ prep.out
 randomseeds
 reading
 wf.out
+
+# vmc_hubbard
+FN.out
+VMC.out
+fort.*
+prep.out
+tablesim

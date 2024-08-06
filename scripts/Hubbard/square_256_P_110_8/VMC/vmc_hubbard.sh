@@ -1,7 +1,9 @@
 #!/bin/sh
 
+cd "$(dirname "$0")"
+
 #Compile codes
-cd ../../../programs/vmc_hubbard || exit
+cd ../../../../programs/vmc_hubbard || exit
 chmod +x compile.sh
 ./compile.sh
 cd -
