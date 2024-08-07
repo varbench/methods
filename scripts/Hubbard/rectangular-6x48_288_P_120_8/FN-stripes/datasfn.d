@@ -4,7 +4,7 @@ iseed=19934663
 iopt=1                    
 iread=0                   
 nwtot=500
-ngen=4000                
+ngen=12000                
 nscra=200
 epst=1.d-10                
 /
