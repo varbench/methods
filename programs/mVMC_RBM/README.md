@@ -1,8 +1,7 @@
 # mVMC
 
 Version 1.1.0 copied from https://github.com/issp-center-dev/mVMC, modified with Restricted Boltzmann machine (RBM)
-as developed and implemented by Kota Ido and Takahiro Misawa. It can be fond at https://github.com/issp-center-dev/mVMC/pull/46
-
+as developed and implemented by Kota Ido and Takahiro Misawa. It can also be fond at https://github.com/issp-center-dev/mVMC/tree/develop/
 
 
 A numerical solver package for a wide range of quantum lattice models based on many-variable Variational Monte Carlo method
