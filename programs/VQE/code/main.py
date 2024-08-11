@@ -1,18 +1,21 @@
 import numpy as np
 import utils
 import sys
-import config as cv_module
+import config
 import lattice_symmetries as ls
 import scipy.linalg
 import observables
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--j2", type=float, default=0.0)
+parser.add_argument("--lattice", type=str, choices=["square4x4", "triangle4x4", "kagome2x3", "square6x4"])
+parser.add_argument("--log2samples", type=int, default=36)
+parser.add_argument('--symmetry', type=int, default=0)
+args = parser.parse_args()
 
 
-config_file = utils.import_config(sys.argv[1])
-config_import = config_file.opt_parameters()
-
-opt_config = cv_module.opt_parameters()
-opt_config.__dict__ = config_import.__dict__.copy()
-
+opt_config = config.opt_parameters(args)
 H = opt_config.hamiltonian(**opt_config.ham_params_dict)
 
 circuit = opt_config.circuit(**opt_config.circuit_params_dict)

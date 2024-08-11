@@ -1106,3 +1106,106 @@ def compute_energy_qiskit_fromshift(circuit, hamiltonian, N_samples, n_repetitio
 
 
 
+
+def get_C1_triangle_symmetry_map(Lx, Ly, basis, su2=False):
+    assert Lx == Ly
+    assert Lx == 4
+
+    xmap = np.array([0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15])
+    n_qubits = Lx * Ly
+    spins = index_to_spin(basis.states, number_spins = Lx * Ly)
+
+    spins = spins[:, xmap]
+
+    idxs_mapped = spin_to_index(spins, number_spins = Lx * Ly).astype(np.uint64)
+    idxs_mapped2 = np.zeros((len(idxs_mapped), 8), dtype=np.uint64)
+    idxs_mapped2[:, 0] = idxs_mapped
+    rep, _, _ = basis.batched_state_info(idxs_mapped2)
+    rep = rep[:, 0]
+    assert len(np.unique(rep)) == len(rep)
+    return xmap, np.argsort(rep)
+
+def get_C2_triangle_symmetry_map(Lx, Ly, basis, su2=False):
+    assert Lx == Ly
+    assert Lx == 4
+
+    xmap = np.array([15, 11, 7, 3, 14, 10, 6, 2, 13, 9, 5, 1, 12, 8, 4, 0])
+    n_qubits = Lx * Ly
+    spins = index_to_spin(basis.states, number_spins = Lx * Ly)
+
+    spins = spins[:, xmap]
+
+    idxs_mapped = spin_to_index(spins, number_spins = Lx * Ly).astype(np.uint64)
+    idxs_mapped2 = np.zeros((len(idxs_mapped), 8), dtype=np.uint64)
+    idxs_mapped2[:, 0] = idxs_mapped
+    rep, _, _ = basis.batched_state_info(idxs_mapped2)
+    rep = rep[:, 0]
+    assert len(np.unique(rep)) == len(rep)
+    return xmap, np.argsort(rep)
+
+def get_trx_kagome18_symmetry_map(Lx, Ly, basis, su2=False):
+    xmap = np.array([1, 2, 0, 4, 5, 3, 7, 8, 6, 10, 11, 9, 13, 14, 12, 16, 17, 15])
+    n_qubits = Lx * Ly * 3
+    spins = index_to_spin(basis.states, number_spins = Lx * Ly * 3)
+
+    spins = spins[:, xmap]
+
+    idxs_mapped = spin_to_index(spins, number_spins = Lx * Ly * 3).astype(np.uint64)
+    idxs_mapped2 = np.zeros((len(idxs_mapped), 8), dtype=np.uint64)
+    idxs_mapped2[:, 0] = idxs_mapped
+    rep, _, _ = basis.batched_state_info(idxs_mapped2)
+    rep = rep[:, 0]
+    assert len(np.unique(rep)) == len(rep)
+    return xmap, np.argsort(rep)
+
+
+
+def get_try_kagome18_symmetry_map(Lx, Ly, basis, su2=False):
+    xmap = np.array([3, 4, 5, 0, 1, 2, 9, 10, 11, 6, 7, 8, 15, 16, 17, 12, 13, 14])
+    n_qubits = Lx * Ly * 3
+    spins = index_to_spin(basis.states, number_spins = Lx * Ly * 3)
+
+    spins = spins[:, xmap]
+
+    idxs_mapped = spin_to_index(spins, number_spins = Lx * Ly * 3).astype(np.uint64)
+    idxs_mapped2 = np.zeros((len(idxs_mapped), 8), dtype=np.uint64)
+    idxs_mapped2[:, 0] = idxs_mapped
+    rep, _, _ = basis.batched_state_info(idxs_mapped2)
+    rep = rep[:, 0]
+    assert len(np.unique(rep)) == len(rep)
+    return xmap, np.argsort(rep)
+
+
+
+
+def get_mirx_kagome18_symmetry_map(Lx, Ly, basis, su2=False):
+    xmap = np.array([0, 16, 14, 3, 13, 17, 6, 10, 8, 9, 7, 11, 12, 4, 2, 15, 1, 5])
+    n_qubits = Lx * Ly * 3
+    spins = index_to_spin(basis.states, number_spins = Lx * Ly * 3)
+
+    spins = spins[:, xmap]
+
+    idxs_mapped = spin_to_index(spins, number_spins = Lx * Ly * 3).astype(np.uint64)
+    idxs_mapped2 = np.zeros((len(idxs_mapped), 8), dtype=np.uint64)
+    idxs_mapped2[:, 0] = idxs_mapped
+    rep, _, _ = basis.batched_state_info(idxs_mapped2)
+    rep = rep[:, 0]
+    assert len(np.unique(rep)) == len(rep)
+    return xmap, np.argsort(rep)
+
+
+def get_miry_kagome18_symmetry_map(Lx, Ly, basis, su2=False):
+    xmap = np.array([0, 2, 1, 3, 5, 4, 8, 7, 6, 11, 10, 9, 15, 17, 16, 12, 14, 13])
+    n_qubits = Lx * Ly * 3
+    spins = index_to_spin(basis.states, number_spins = Lx * Ly * 3)
+
+    spins = spins[:, xmap]
+
+    idxs_mapped = spin_to_index(spins, number_spins = Lx * Ly * 3).astype(np.uint64)
+    idxs_mapped2 = np.zeros((len(idxs_mapped), 8), dtype=np.uint64)
+    idxs_mapped2[:, 0] = idxs_mapped
+    rep, _, _ = basis.batched_state_info(idxs_mapped2)
+    rep = rep[:, 0]
+    assert len(np.unique(rep)) == len(rep)
+    return xmap, np.argsort(rep)
+

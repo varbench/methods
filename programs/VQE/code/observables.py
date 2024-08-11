@@ -192,12 +192,12 @@ class Observables(object):
         self.lambda_log.write('{:.4f}\n'.format(lamb))
         self.lambda_log.flush()
 
-
-        #### compute energy ###
+                #### compute energy ###
         state = self.circuit(noisy=False)
         state_proj = self.projector(state)
         norm = np.vdot(state, state_proj)
         energy = (np.vdot(state, self.hamiltonian(state_proj)) / norm).real - self.hamiltonian.energy_renorm
+        energy_square = (np.vdot(state, self.hamiltonian(self.hamiltonian(state_proj))) / norm).real - 2 * self.hamiltonian.energy_renorm * (energy + self.hamiltonian.energy_renorm) + self.hamiltonian.energy_renorm ** 2
         #print(np.vdot(state, self.hamiltonian(state_proj)) / norm)
         #print(norm, 'norm full')
         #print(np.vdot(self.projector(self.hamiltonian(state)), self.hamiltonian(self.projector(state))) / np.vdot(self.projector(self.hamiltonian(state)), self.projector(self.hamiltonian(state))))
@@ -222,7 +222,7 @@ class Observables(object):
             assert np.isclose(val_ed.imag, 0.0)
             obs_vals.append(val.real)
             obs_vals_ed.append(val_ed.real)
-        
+
         #### dimer amendment ###
         dimer_avg = np.dot(state_proj.conj(), self.observables[-1][0](state_proj))
         assert np.isclose(dimer_avg.imag, 0.0)
@@ -234,7 +234,6 @@ class Observables(object):
 
         data = [j for i in zip(obs_vals, obs_vals_ed) for j in i]
 
-        self.main_log.write(('{:.7f} {:.7f} {:.14f} {:.7f} ' + '{:.7f}/{:.7f} ' * len(obs_vals) + '\n').format(self.hamiltonian.gse - self.hamiltonian.energy_renorm, energy, fidelity, norm.real, *data))
-        print(('{:.7f} {:.7f} {:.14f} {:.7f} ' + '{:.7f}/{:.7f} ' * len(obs_vals) + '\n').format(self.hamiltonian.gse - self.hamiltonian.energy_renorm, energy, fidelity, norm.real, *data), flush=True)
+        self.main_log.write(('{:.7f} {:.7f} {:.7f} {:.14f} {:.7f} ' + '{:.7f}/{:.7f} ' * len(obs_vals) + '\n').format(self.hamiltonian.gse - self.hamiltonian.energy_renorm, energy, energy_square - energy ** 2, fidelity, norm.real, *data))
+        print(('{:.7f} {:.7f} {:.7f} {:.14f} {:.7f} ' + '{:.7f}/{:.7f} ' * len(obs_vals) + '\n').format(self.hamiltonian.gse - self.hamiltonian.energy_renorm, energy, energy_square - energy ** 2, fidelity, norm.real, *data), flush=True)
         self.main_log.flush()
-        #exit(-1)

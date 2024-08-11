@@ -1142,7 +1142,7 @@ class SU2_symmetrized(Circuit):
         P_ijun = (SSun + np.eye(4)) / 2.
         pairs = []
 
-        for n_layers in range(3):
+        for n_layers in range(1):
             for shid, shift in enumerate([(0, 0), (1, 1), (1, 0), (0, 1)]):
                 for pair in [(0, 4), (1, 5), (2, 6), (3, 7), (8, 12), (9, 13), (10, 14), (11, 15)] if shid < 2 else [(0, 1), (2, 3), (4, 5), (6, 7), (8, 9), (10, 11), (12, 13), (14, 15)]:
                 #for pair in [(0, 4), (1, 5), (2, 6), (3, 7)] if shid < 2 else [(0, 1), (2, 3), (4, 5), (6, 7)]:
@@ -1764,7 +1764,7 @@ class SU2_symmetrized_square_6x4(SU2_symmetrized):
                 layers.append(deepcopy(layer))
                 pairs.append((i, j))
 
-        return layers, pairs
+        return layers, pairs, np.arange(sum([len(x) for x in layers]))
 
 
 class SU2_symmetrized_square_2x3_OBC(SU2_symmetrized):
@@ -2264,3 +2264,42 @@ class TFIM_1xL(SU2_symmetrized):
                 self.derivatives.append(derivatives_layer)
         return
 
+class SU2_symmetrized_kagome18(SU2_symmetrized):
+    def __init__(self, subl, Lx, Ly, basis, config, unitary, BC, spin=0):
+        super().__init__(subl, Lx, Ly, basis, config, unitary, BC, spin)
+        self.n_qubits = Lx * Ly
+
+        return
+
+    def _get_dimerizarion_layers(self):
+        layers = []
+        P_ij = (SS + np.eye(4)) / 2.
+        P_ijun = (SSun + np.eye(4)) / 2.
+        pairs = []
+
+        for l in range(2):
+            for pattern in [
+                    [(0, 6), (1, 7), (2, 8), (3, 9), (4, 10), (5, 11)], \
+                    [(0, 3), (1, 4), (2, 5)], \
+                    [(0, 12), (3, 5), (1, 13), (4, 16), (2, 14), (5, 17)], \
+                    [(6, 7), (1, 2), (9, 10), (4, 5)], \
+                    [(6, 12), (11, 17), (7, 13), (9, 15), (8, 10), (14, 16)], \
+                    [(12, 3), (0, 15), (4, 13), (16, 1), (14, 5), (17, 2)], \
+                    [(12, 15), (13, 16), (14, 17)], \
+                    [(12, 11), (17, 7), (13, 9), (15, 8), (14, 10), (16, 6)], \
+                    [(6, 11), (7, 9), (8, 10)], \
+                    [(12, 17), (13, 15), (14, 16)], \
+                    [(6, 1), (7, 2), (8, 0), (9, 4), (10, 5), (11, 3)], \
+                    [(1, 2), (7, 8), (4, 5), (10, 11)], \
+                    [(2, 8), (8, 6), (5, 3), (11, 9)]
+                ]:
+                for pair in pattern:
+                    i, j = pair
+
+                    layer = [((i, j), P_ij if self.unitary[i, j] == +1 else P_ijun)]
+                    layers.append(deepcopy(layer))
+                    pairs.append((i, j))
+
+        
+        print('parameters', sum([len(x) for x in layers]))
+        return layers, pair, np.arange(sum([len(x) for x in layers]))
