@@ -4,8 +4,8 @@ using namespace itensor;
 
 int main()
     {
-    int Nx = 10;
-    int Ny = 10;
+    int Nx = 16;
+    int Ny = 16;
     auto N = Nx*Ny;
     auto yperiodic = false;
 
