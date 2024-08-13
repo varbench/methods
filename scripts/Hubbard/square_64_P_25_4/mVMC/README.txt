@@ -1,5 +1,5 @@
 This is a script for calculating the ground-state energy of the simple Hubbard model using mVMC.
-For simplicity, we focus on the case of Ns=8x8, Ne=50, U=4 (the top data in https://github.com/varbench/varbench/blob/main/Hubbard/Imada_group_overview/square_lattice_benchmark.md ).
+For simplicity, we focus on the case of Ns=8x8, Ne=50 or 64, U=4 or 8 (the data in https://github.com/varbench/varbench/blob/main/Hubbard/supplements/Imada_group_overview.md ).
 Please run the python code make_all.py to generate definition files.
 The code requires numpy and jason libraries.
 Input parameters are written in dat_input_makedef.txt.
