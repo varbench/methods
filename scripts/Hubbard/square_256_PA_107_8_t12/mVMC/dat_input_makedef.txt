@@ -1,0 +1,15 @@
+Lx 16
+Ly 16
+Ne 214
+
+t2 -0.25
+U 8.0
+alpha 1
+
+## x: AP, y: P
+APFlag 1
+
+## x: P, y: P
+#APFlag 0
+
+dir_def def_files

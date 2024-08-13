@@ -4,6 +4,7 @@ import os
 import time
 #
 import sub_coulomb
+import sub_coulombinter
 import sub_greenone
 import sub_greentwo
 import sub_locspn
@@ -35,7 +36,11 @@ if __name__ == "__main__":
         APsgn = -1;
     alpha = loaded_dict["alpha"]
     flag_ap = loaded_dict["APFlag"]
+    t2 = loaded_dict.get("t2", 0)
     U = loaded_dict["U"]
+    V = loaded_dict.get("V", 0)
+    V2 = loaded_dict.get("V2", 0)
+    hasInter = (V != 0)
 
     ## check directory
     if not os.path.exists(dir_def):
@@ -45,8 +50,12 @@ if __name__ == "__main__":
     file_coulombintra = "coulombintra.def"
     sub_coulomb.make_coulombintra(dir_def,file_coulombintra,Nsite,U)
 
+    if hasInter:
+        file_coulombinter = "coulombinter.def"
+        sub_coulombinter.make_coulombinter(dir_def,file_coulombinter,Lx,Ly,Nsite,V,V2)
+
     file_trans = "trans.def"
-    sub_trans.make_trans(dir_def,file_trans,Lx,Ly,Nsite)
+    sub_trans.make_trans(dir_def,file_trans,Lx,Ly,Nsite,t2)
 
     file_greenone = "greenone.def"
     sub_greenone.make_greenone(dir_def,file_greenone,Nsite)
@@ -80,4 +89,4 @@ if __name__ == "__main__":
     rnd = np.random.randint(9999998)+1 # rnd up to 7 digits and rnd>=1
     print("#",current_time,process_id,random_number,seed)
     print("# modpara_rnd",rnd)
-    sub_modpara_namelist.make_modpara_namelist(dir_def,Nsite,Ne,APsgn,rnd,alpha)
+    sub_modpara_namelist.make_modpara_namelist(dir_def,Nsite,Ne,APsgn,rnd,hasInter,alpha)

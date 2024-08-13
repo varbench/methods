@@ -3,7 +3,7 @@ import json
 import os
 import time
 
-def make_namelist(output,pre="",post=""):
+def make_namelist(output,pre="",post="",hasInter=False):
     ### namelist.def ###
     fileName = []
     fileName.append(pre+'namelist'+post+'.def')
@@ -11,7 +11,8 @@ def make_namelist(output,pre="",post=""):
     fileName.append(pre+'locspn.def')
     fileName.append(pre+'trans.def')
     fileName.append(pre+'coulombintra.def')
-    #fileName.append(pre+'coulombinter.def')
+    if hasInter:
+        fileName.append(pre+'coulombinter.def')
     fileName.append(pre+'greenone.def')
     fileName.append(pre+'greentwo.def')
     #fileName.append(pre+'gutzwiller.def')
@@ -29,7 +30,8 @@ def make_namelist(output,pre="",post=""):
     objName.append('         LocSpin  ')
     objName.append('           Trans  ')
     objName.append('    CoulombIntra  ')
-    #objName.append('    CoulombInter  ')
+    if hasInter:
+        objName.append('    CoulombInter  ')
     objName.append('       OneBodyG  ')
     objName.append('       TwoBodyG  ')
     #objName.append('      Gutzwiller  ')
@@ -102,9 +104,9 @@ def make_modpara(output,pre="",post="",
         )
     f.close()
 
-def make_modpara_namelist(dir_def,Nsite,Ne,APsgn,rnd,alpha):
-    make_namelist(dir_def,pre="",post="") # optimization
-    make_namelist(dir_def,pre="",post="_aft") # calc green func
+def make_modpara_namelist(dir_def,Nsite,Ne,APsgn,rnd,hasInter,alpha):
+    make_namelist(dir_def,pre="",post="",hasInter=hasInter) # optimization
+    make_namelist(dir_def,pre="",post="_aft",hasInter=hasInter) # calc green func
     make_modpara(dir_def,pre="",post="",NVMCCalMode=0,NLanczosMode=0,NDataIdxStart=1,NDataQtySmp=1,
                  Nsite=Nsite,Ne=Ne,APsgn=APsgn,rnd=rnd,alpha=alpha)
     make_modpara(dir_def,pre="",post="_aft",NVMCCalMode=1,NLanczosMode=1,NDataIdxStart=1,NDataQtySmp=10,
@@ -127,6 +129,8 @@ if __name__ == "__main__":
     if loaded_dict["APFlag"] == 1:
         APsgn = -1;
     alpha = loaded_dict["alpha"]
+    V = loaded_dict.get("V", 0)
+    hasInter = (V != 0)
 
     current_time = int(time.time())
     process_id = os.getpid()
@@ -141,4 +145,4 @@ if __name__ == "__main__":
     if not os.path.exists(dir_def):
         os.makedirs(dir_def)
 
-    make_modpara_namelist(dir_def,Nsite,Ne,APsgn,rnd,alpha)
+    make_modpara_namelist(dir_def,Nsite,Ne,APsgn,rnd,hasInter,alpha)
