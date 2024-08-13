@@ -1,6 +1,8 @@
 .DS_Store
 
 # mVMC
+dat_output_makedef.json
+def_files/
 output/
 
 # SpinlesstV-LCT-INT
