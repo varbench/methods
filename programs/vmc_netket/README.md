@@ -10,4 +10,4 @@ The code requires Python 3.10.4 . `requirements.txt` contains a simple set of de
 
 Alternatively, `conda_env.yaml` contains the dependencies including CUDA, which is usually needed for VMC on larger lattices. It also includes [lattice-symmetries](https://github.com/twesterhout/lattice-symmetries) to implement ED on larger lattices. Use `conda env create -f conda_env.yaml` to install them.
 
-`ed_ls.py` runs the naive ED using lattice-symmetries.
+`ed_ls.py` runs the ED using lattice-symmetries.
